@@ -42,7 +42,7 @@ export default [
     },
 
     rules: {
-      quotes: ["error", "double"],
+      quotes: ["error", "single"],
       "no-console": "error",
       "no-unused-vars": "error",
     },
