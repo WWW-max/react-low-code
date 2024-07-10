@@ -1,5 +1,14 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 export default function ManageLayout() {
-  return <div>ManageLayout</div>;
+  return (
+    <div>
+      <div>header</div>
+      <div>
+        <Outlet />
+      </div>
+      <div>footer</div>
+    </div>
+  );
 }

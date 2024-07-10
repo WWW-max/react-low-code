@@ -1,0 +1,15 @@
+.container {
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); // 渐变
+    height: calc(100vh - 46px - 65px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // .info {
+    //     text-align: center;
+    //     button {
+    //         height: 60px;
+    //         font-size: 24px;
+    //     }
+    // } 
+}

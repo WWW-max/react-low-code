@@ -41,15 +41,15 @@ const router = createBrowserRouter([
     element: <ManageLayout />,
     children: [
       {
-        path: 'list',
+        path: '/manage/list',
         element: <List />,
       },
       {
-        path: '/star',
+        path: '/manage/star',
         element: <Star />,
       },
       {
-        path: '/trash',
+        path: '/manage/trash',
         element: <Trash />,
       },
     ],
@@ -59,11 +59,11 @@ const router = createBrowserRouter([
     element: <QuestionLayout />,
     children: [
       {
-        path: '/edit/:id',
+        path: '/question/edit/:id',
         element: <Edit />,
       },
       {
-        path: '/stat/:id',
+        path: '/question/stat/:id',
         element: <Edit />,
       },
     ],

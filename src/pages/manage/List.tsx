@@ -1,10 +1,10 @@
 import { produce } from 'immer';
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 export default function List() {
   const [questionList, setQuestionList] = useState([
     {
-      _id: 1, // Moo
+      _id: 1, // MongoDB 使用_id
       title: '问卷1',
       isPublished: true,
       isStar: true,
@@ -64,17 +64,11 @@ export default function List() {
       })
     );
   }
-  const inputRef = useRef<HTMLInputElement>(null);
-  function focus() {
-    inputRef.current?.focus();
-  }
   // function editQuestion(_id: number) {
   //   console.log('编辑id', _id);
   // }
   return (
     <div>
-      <input ref={inputRef} />
-      <button onClick={focus}>focus</button>
       <h1>问卷列表页</h1>
       <div>
         {questionList.map(item => (
