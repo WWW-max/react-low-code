@@ -23,34 +23,34 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/login',
+        path: 'login',
         element: <Login />,
       },
       {
-        path: '/register',
+        path: 'register',
         element: <Register />,
+      },
+      {
+        path: 'manage',
+        element: <ManageLayout />,
+        children: [
+          {
+            path: 'list',
+            element: <List />,
+          },
+          {
+            path: 'star',
+            element: <Star />,
+          },
+          {
+            path: 'trash',
+            element: <Trash />,
+          },
+        ],
       },
       {
         path: '*', // 404 路由配置，写在最后(兜底)
         element: <NotFound />,
-      },
-    ],
-  },
-  {
-    path: '/manage',
-    element: <ManageLayout />,
-    children: [
-      {
-        path: '/manage/list',
-        element: <List />,
-      },
-      {
-        path: '/manage/star',
-        element: <Star />,
-      },
-      {
-        path: '/manage/trash',
-        element: <Trash />,
       },
     ],
   },
@@ -71,3 +71,10 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+// -------------------- 分割线 ---------------------
+// 常用的路由常量
+export const HOME_PATHNAME = '/';
+export const LOGIN_PATHNAME = '/login';
+export const REGISTER_PATHNAME = '/register';
+export const MANAGE_INDEX_PATHNAME = '/manage/list';

@@ -49,13 +49,6 @@ export default function List() {
       },
     ]);
   }
-  // function deleteQuestion(_id: number) {
-  //   const arr: Array<QuestionListProps> = [];
-  //   questionList.forEach(item => {
-  //     if (item._id !== _id) arr.push(item);
-  //   });
-  //   setQuestionList(arr as Array<QuestionListProps>);
-  // }
   function deleteQuestion(_id: number) {
     setQuestionList(
       produce(draftState => {
@@ -64,12 +57,9 @@ export default function List() {
       })
     );
   }
-  // function editQuestion(_id: number) {
-  //   console.log('编辑id', _id);
-  // }
   return (
     <div>
-      <h1>问卷列表页</h1>
+      <h1>我的问卷</h1>
       <div>
         {questionList.map(item => (
           <div key={item._id} className="list-item">

@@ -1,7 +1,6 @@
 .header {
     display: flex;
     background-color: black;
-    height: 80px;
     color: white;
     .left {
         flex: 1;
@@ -14,6 +13,9 @@
         margin-right: 100px;
         align-content: center;
     }
+}
+.main {
+    
 }
 .footer {
     text-align: center;
