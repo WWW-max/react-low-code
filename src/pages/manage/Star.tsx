@@ -2,6 +2,7 @@ import { Space } from 'antd';
 import React, { useState } from 'react';
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import styles from './common.module.scss';
+import ListSearch from '../../components/ListSearch/ListSearch';
 
 export default function Star() {
   const [questionList, setQuestionList] = useState([
@@ -42,7 +43,9 @@ export default function Star() {
     <div>
       <div className={styles.header}>
         <h1 className={styles.left}>收藏问卷</h1>
-        <div className={styles.right}>listSearch</div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
       <div className={styles.content}>
         <Space direction="vertical" style={{ width: '100%' }}>

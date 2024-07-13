@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './common.module.scss';
 import { Space } from 'antd';
 import QuestionTable, { DataSourceProps } from '../../components/QuestionTable/QuestionTable';
+import ListSearch from '../../components/ListSearch/ListSearch';
 
 export default function Trash() {
   const [questionList, setQuestionList] = useState([
@@ -42,7 +43,9 @@ export default function Trash() {
     <div>
       <div className={styles.header}>
         <h1 className={styles.left}>回收站</h1>
-        <div className={styles.right}>listSearch</div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
       <div className={styles.content}>
         <QuestionTable dataSource={questionList} />

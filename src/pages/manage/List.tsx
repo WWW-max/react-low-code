@@ -1,8 +1,11 @@
 import { produce } from 'immer';
 import React, { useState } from 'react';
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
-import { Space } from 'antd';
+import { Space, Typography } from 'antd';
 import styles from './common.module.scss';
+import ListSearch from '../../components/ListSearch/ListSearch';
+
+const { Title } = Typography;
 
 export default function List() {
   const [questionList, setQuestionList] = useState([
@@ -63,8 +66,12 @@ export default function List() {
   return (
     <div>
       <div className={styles.header}>
-        <h1 className={styles.left}>我的问卷</h1>
-        <div className={styles.right}>listSearch</div>
+        <div className={styles.left}>
+          <Title level={3}>我的问卷</Title>
+        </div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
       <div className={styles.content}>
         <Space direction="vertical" style={{ width: '100%' }}>

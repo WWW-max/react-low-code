@@ -39,15 +39,19 @@ const QuestionTable: FC<DataSourceProps> = (props: DataSourceProps) => {
   };
   return (
     <>
-      <Space>
-        <Button type="primary" disabled={selectedIds?.length === 0}>
-          恢复
-        </Button>
-        <Button type="primary" danger disabled={selectedIds?.length === 0} onClick={del}>
-          彻底删除
-        </Button>
-      </Space>
-      <Table columns={trashColumns} dataSource={data} rowSelection={rowSelection} />
+      <div style={{ marginBottom: '16px' }}>
+        <Space>
+          <Button type="primary" disabled={selectedIds?.length === 0}>
+            恢复
+          </Button>
+          <Button type="primary" danger disabled={selectedIds?.length === 0} onClick={del}>
+            彻底删除
+          </Button>
+        </Space>
+      </div>
+      <div style={{ border: '1px solid #e8e8e8' }}>
+        <Table columns={trashColumns} dataSource={data} rowSelection={rowSelection} />
+      </div>
     </>
   );
 };
