@@ -1,5 +1,8 @@
 import { produce } from 'immer';
 import React, { useState } from 'react';
+import QuestionCard from '../../components/QuestionCard/QuestionCard';
+import { Space } from 'antd';
+import styles from './common.module.scss';
 
 export default function List() {
   const [questionList, setQuestionList] = useState([
@@ -9,7 +12,7 @@ export default function List() {
       isPublished: true,
       isStar: true,
       answerCount: 10,
-      createAt: '3月10日 13:23',
+      createdAt: '3月10日 13:23',
     },
     {
       _id: 2,
@@ -17,7 +20,7 @@ export default function List() {
       isPublished: false,
       isStar: false,
       answerCount: 10,
-      createAt: '3月10日 13:23',
+      createdAt: '3月10日 13:23',
     },
     {
       _id: 3,
@@ -25,7 +28,7 @@ export default function List() {
       isPublished: true,
       isStar: true,
       answerCount: 10,
-      createAt: '5月10日 10:23',
+      createdAt: '5月10日 10:23',
     },
     {
       _id: 4,
@@ -33,7 +36,7 @@ export default function List() {
       isPublished: false,
       isStar: true,
       answerCount: 10,
-      createAt: '3月10日 13:23',
+      createdAt: '3月10日 13:23',
     },
   ]);
   function add() {
@@ -45,7 +48,7 @@ export default function List() {
         isPublished: questionList.length % 2 === 0 ? true : false,
         isStar: true,
         answerCount: 10,
-        createAt: '3月10日 13:23',
+        createdAt: '3月10日 13:23',
       },
     ]);
   }
@@ -59,24 +62,19 @@ export default function List() {
   }
   return (
     <div>
-      <h1>我的问卷</h1>
-      <div>
-        {questionList.map(item => (
-          <div key={item._id} className="list-item">
-            <strong>{item.title}</strong>
-            &nbsp;
-            {item.isPublished ? (
-              <span style={{ color: 'green' }}>已发布</span>
-            ) : (
-              <span>未发布</span>
-            )}
-            &nbsp;
-            <button onClick={() => deleteQuestion(item._id)}>删除问卷</button>
-          </div>
-        ))}
+      <div className={styles.header}>
+        <h1 className={styles.left}>我的问卷</h1>
+        <div className={styles.right}>listSearch</div>
       </div>
-      <div>
-        <button onClick={add}>添加问卷</button>
+      <div className={styles.content}>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          {questionList.map(item => (
+            <QuestionCard key={item._id} {...item} />
+          ))}
+        </Space>
+      </div>
+      <div className={styles.footer}>
+        <div>loadMore</div>
       </div>
     </div>
   );

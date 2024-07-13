@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import styles from './ManageLayout.module.scss';
 import { Button, Divider, Space } from 'antd';
-import { BarsOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons';
+import { BarsOutlined, DeleteOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons';
 
 export default function ManageLayout() {
   const { pathname } = useLocation();
@@ -20,6 +20,7 @@ export default function ManageLayout() {
             type={pathname.startsWith('/manage/list') ? 'default' : 'text'}
             size="large"
             icon={<BarsOutlined />}
+            onClick={() => nav('/manage/list')}
           >
             我的问卷
           </Button>
@@ -31,7 +32,14 @@ export default function ManageLayout() {
           >
             收藏问卷
           </Button>
-          <Button>回收站</Button>
+          <Button
+            type={pathname.startsWith('/manage/trash') ? 'default' : 'text'}
+            size="large"
+            icon={<DeleteOutlined />}
+            onClick={() => nav('/manage/trash')}
+          >
+            回收站
+          </Button>
         </Space>
       </div>
       <div className={styles.right}>

@@ -1,12 +1,12 @@
-import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
-import react from "eslint-plugin-react";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
+import react from 'eslint-plugin-react';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import globals from 'globals';
+import tsParser from '@typescript-eslint/parser';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import js from '@eslint/js';
+import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,16 +19,16 @@ const compat = new FlatCompat({
 export default [
   ...fixupConfigRules(
     compat.extends(
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended"
+      'eslint:recommended',
+      'plugin:react/recommended',
+      'plugin:@typescript-eslint/recommended',
+      'plugin:prettier/recommended'
     )
   ),
   {
     plugins: {
       react: fixupPluginRules(react),
-      "@typescript-eslint": fixupPluginRules(typescriptEslint),
+      '@typescript-eslint': fixupPluginRules(typescriptEslint),
     },
 
     languageOptions: {
@@ -37,14 +37,14 @@ export default [
       },
 
       parser: tsParser,
-      ecmaVersion: "latest",
-      sourceType: "module",
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
 
     rules: {
-      quotes: ["error", "single"],
-      "no-console": "error",
-      "no-unused-vars": "error",
+      quotes: ['error', 'single'],
+      'no-console': 'warn',
+      'no-unused-vars': 'error',
     },
   },
 ];

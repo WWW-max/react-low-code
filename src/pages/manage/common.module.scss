@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    .left {
+        flex: 1;
+    }
+    .right {
+        flex: 2;
+        text-align: right;
+    }
+
+}
+.content {
+    margin-bottom: 20px;
+}
+.footer {
+    text-align: center;
+}
