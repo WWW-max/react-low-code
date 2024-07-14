@@ -4,6 +4,7 @@ import styles from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
 const { Title, Paragraph } = Typography;
 export default function Home() {
+  // 第三方Hook
   const nav = useNavigate();
   return (
     <div className={styles.container}>

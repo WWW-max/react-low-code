@@ -12,6 +12,7 @@ import Star from '../pages/manage/Star';
 import Trash from '../pages/manage/Trash';
 import QuestionLayout from '../layouts/QuestionLayout';
 import Edit from '../pages/question/Edit';
+import Stat from '../pages/question/Stat';
 
 const router = createBrowserRouter([
   {
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/question/stat/:id',
-        element: <Edit />,
+        element: <Stat />,
       },
     ],
   },

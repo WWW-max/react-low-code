@@ -8,7 +8,7 @@ import {
   EditOutlined,
   StarOutlined,
 } from '@ant-design/icons';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type QuestionCardProps = {
   _id: number;
@@ -19,8 +19,9 @@ type QuestionCardProps = {
   createdAt: string;
 };
 export default function QuestionCard(props: QuestionCardProps) {
-  const { title, isPublished, isStar, answerCount, createdAt } = props;
+  const { _id, title, isPublished, isStar, answerCount, createdAt } = props;
   const { pathname } = useLocation();
+  const nav = useNavigate();
   return (
     <Card
       title={
@@ -40,10 +41,19 @@ export default function QuestionCard(props: QuestionCardProps) {
       <div className={styles.container}>
         <div className={styles.left}>
           <Space>
-            <Button icon={<EditOutlined />} type="text">
+            <Button
+              icon={<EditOutlined />}
+              type="text"
+              onClick={() => nav(`/question/edit/${_id}`)}
+            >
               编辑问卷
             </Button>
-            <Button icon={<BarChartOutlined />} type="text" disabled={!isPublished}>
+            <Button
+              icon={<BarChartOutlined />}
+              type="text"
+              disabled={!isPublished}
+              onClick={() => nav(`/question/stat/${_id}`)}
+            >
               问卷统计
             </Button>
           </Space>
