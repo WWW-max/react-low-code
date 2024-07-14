@@ -1,8 +1,10 @@
-import { Button, Form, Space } from 'antd';
+import { Button, Form, Space, Typography } from 'antd';
 import Input from 'antd/es/input/Input';
 import Link from 'antd/es/typography/Link';
 import React from 'react';
 import styles from './Register.module.scss';
+
+const { Title } = Typography;
 export default function Register() {
   const onFinish = (values: any) => {
     console.log('success', values);
@@ -10,7 +12,7 @@ export default function Register() {
   return (
     <div className={styles.container}>
       <div>
-        <h1>注册新用户</h1>
+        <Title level={2}>注册新用户</Title>
       </div>
       <div>
         <Form labelCol={{ span: 7 }} wrapperCol={{ span: 16 }} onFinish={onFinish}>
