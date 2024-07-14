@@ -4,10 +4,12 @@ import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import { Space, Typography } from 'antd';
 import styles from './common.module.scss';
 import ListSearch from '../../components/ListSearch/ListSearch';
+import { useTitle } from 'ahooks';
 
 const { Title } = Typography;
 
 export default function List() {
+  useTitle('问卷低代码平台 - 我的问卷');
   const [questionList, setQuestionList] = useState([
     {
       _id: 1, // MongoDB 使用_id

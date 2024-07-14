@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import styles from './common.module.scss';
 import ListSearch from '../../components/ListSearch/ListSearch';
+import { useTitle } from 'ahooks';
 
 export default function Star() {
+  useTitle('问卷低代码平台 - 收藏问卷');
   const [questionList, setQuestionList] = useState([
     {
       _id: 1, // MongoDB 使用_id

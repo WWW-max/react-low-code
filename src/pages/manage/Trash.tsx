@@ -3,8 +3,10 @@ import styles from './common.module.scss';
 import { Space } from 'antd';
 import QuestionTable, { DataSourceProps } from '../../components/QuestionTable/QuestionTable';
 import ListSearch from '../../components/ListSearch/ListSearch';
+import { useTitle } from 'ahooks';
 
 export default function Trash() {
+  useTitle('问卷低代码平台 - 回收站');
   const [questionList, setQuestionList] = useState([
     {
       _id: 1, // MongoDB 使用_id
