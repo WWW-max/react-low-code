@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    background-color: black;
+    // background-color: black;
     color: white;
     .left {
         flex: 1;
@@ -15,8 +15,10 @@
     }
 }
 .main {
-    
+    min-height: calc(100vh - 64px - 71px);
 }
 .footer {
     text-align: center;
+    background-color: #f7f7f7;
+    border-top: 1px solid #e8e8e8
 }
