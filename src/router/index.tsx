@@ -3,8 +3,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
+import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
 import NotFound from '../pages/NotFound';
 import ManageLayout from '../layouts/ManageLayout';
 import List from '../pages/manage/List';
