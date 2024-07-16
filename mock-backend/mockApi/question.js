@@ -1,4 +1,5 @@
 const Mock = require('mockjs');
+const getQuestionList = require('../mockData/getQuestionList');
 
 const Random = Mock.Random;
 module.exports = [
@@ -14,6 +15,24 @@ module.exports = [
           data: {
             id: Random.id(),
           },
+        },
+      };
+    },
+  },
+  {
+    // 获取问卷
+    path: 'api/question',
+    method: 'get',
+    response(ctx) {
+      const { url = '', query = {} } = ctx;
+      const isDeleted = url.indexOf('isDeleted=true') >= 0;
+      const isStar = url.indexOf('isStar=true') >= 0;
+      const pageSize = parseInt(query.pageSize) || 0;
+      return {
+        errno: 0,
+        data: {
+          list: getQuestionList({ len: pageSize, isDeleted, isStar }),
+          total: 100, // 总记录数，用于分页
         },
       };
     },

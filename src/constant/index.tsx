@@ -31,3 +31,7 @@ export const trashColumns: TableProps<DataType>['columns'] = [
     dataIndex: 'createdAt',
   },
 ];
+/** 默认的 pageSize */
+export const LIST_PAGE_SIZE = 10;
+
+export const LIST_SEARCH_PARAM_KEY = 'keyword';
