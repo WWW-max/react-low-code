@@ -4,21 +4,32 @@ import styles from './ManageLayout.module.scss';
 import { Button, Divider, Space, message } from 'antd';
 import { BarsOutlined, DeleteOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons';
 import { createQuestionServices } from '../services/question';
+import { useRequest } from 'ahooks';
 
 export default function ManageLayout() {
   const { pathname } = useLocation();
   const nav = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const handleCreateClick = async () => {
-    setLoading(true);
-    const res = await createQuestionServices();
-    const { id } = res.data;
-    if (id) {
-      nav(`/question/edit/${id}`);
-      message.success('创建问卷成功!');
-    }
-    setLoading(false);
-  };
+  // const [loading, setLoading] = useState(false);
+  // const handleCreateClick = async () => {
+  //   setLoading(true);
+  //   const res = await createQuestionServices();
+  //   const { id } = res.data;
+  //   if (id) {
+  //     nav(`/question/edit/${id}`);
+  //     message.success('创建问卷成功!');
+  //   }
+  //   setLoading(false);
+  // };
+  const { loading, run } = useRequest(createQuestionServices, {
+    manual: true,
+    onSuccess: res => {
+      nav(`/question/edit/${res.data.id}`);
+      message.success('创建问卷成功！');
+    },
+    onError: error => {
+      message.error(error.message);
+    },
+  });
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -27,7 +38,7 @@ export default function ManageLayout() {
             type="primary"
             size="large"
             icon={<PlusOutlined />}
-            onClick={handleCreateClick}
+            onClick={run}
             loading={loading}
           >
             创建问卷
