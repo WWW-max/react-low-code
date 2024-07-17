@@ -94,7 +94,7 @@ export default function List() {
         </Space>
       </div>
       <div className={styles.footer}>
-        <div ref={containerRef}>{LoadMoreContentElem}</div>
+        <div ref={containerRef}>{LoadMoreContent}</div>
       </div>
     </div>
   );
