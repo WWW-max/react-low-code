@@ -1,5 +1,5 @@
 import { produce } from 'immer';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import { Empty, Space, Spin, Typography } from 'antd';
 import styles from './common.module.scss';
@@ -32,12 +32,12 @@ export default function List() {
   /** 获取问卷列表, useRequest封装 */
   const { run: load, loading } = useRequest(
     async () => {
-      const data = await getQuestionServices({
-        page,
-        pageSize: LIST_PAGE_SIZE,
-        keyword,
-      });
-      return data;
+      // const data = await getQuestionServices({
+      //   page,
+      //   pageSize: LIST_PAGE_SIZE,
+      //   keyword,
+      // });
+      // return data;
     },
     {
       manual: true, // 手动触发模式，页面初始化后不会自动执行
