@@ -5,7 +5,7 @@ const mockList = require('./mockApi');
 const app = new Koa();
 const router = new KoaRouter();
 
-router.post('/api/test', async ctx => {
+router.get('/api/test', async ctx => {
   ctx.body = 'hello world';
 });
 const getRoles = (fn, ctx) => {

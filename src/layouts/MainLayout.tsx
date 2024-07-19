@@ -14,9 +14,9 @@ export default function MainLayout() {
   const goLogin = () => {
     nav('/login');
   };
-  useEffect(() => {
-    axios.post('/api/test').then(res => console.log('axios data', res.data));
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/api/test').then(res => console.log('axios data', res.data));
+  // }, []);
   return (
     <Layout>
       <Header className={styles.header}>

@@ -11,17 +11,14 @@ module.exports = [
       return {
         errno: 0,
         data: {
-          errno: 0,
-          data: {
-            id: Random.id(),
-          },
+          id: Random.id(),
         },
       };
     },
   },
   {
     // 获取问卷
-    path: 'api/question',
+    path: '/api/question',
     method: 'get',
     response(ctx) {
       const { url = '', query = {} } = ctx;

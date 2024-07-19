@@ -32,15 +32,21 @@ export default function List() {
   /** 获取问卷列表, useRequest封装 */
   const { run: load, loading } = useRequest(
     async () => {
-      // const data = await getQuestionServices({
-      //   page,
-      //   pageSize: LIST_PAGE_SIZE,
-      //   keyword,
-      // });
-      // return data;
+      const data = await getQuestionServices({
+        page,
+        pageSize: LIST_PAGE_SIZE,
+        keyword,
+      });
+      return data;
     },
     {
       manual: true, // 手动触发模式，页面初始化后不会自动执行
+      onSuccess: result => {
+        const { list: l = [], total = 0 } = result;
+        setList(list.concat(l)); // 累计
+        setTotal(total);
+        setPage(page + 1);
+      },
     }
   );
   /** 尝试去触发加载 - 防抖 */
