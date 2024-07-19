@@ -50,7 +50,12 @@ const QuestionTable: FC<DataSourceProps> = (props: DataSourceProps) => {
         </Space>
       </div>
       <div style={{ border: '1px solid #e8e8e8' }}>
-        <Table columns={trashColumns} dataSource={data} rowSelection={rowSelection} />
+        <Table
+          columns={trashColumns}
+          dataSource={data}
+          rowSelection={rowSelection}
+          pagination={false}
+        />
       </div>
     </>
   );
