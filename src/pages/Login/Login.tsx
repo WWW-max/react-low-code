@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { REGISTER_PATHNAME } from '../../router';
-import { loginServices } from '../../services/login';
+import { loginServices } from '../../services/user';
 
 const { Title } = Typography;
 
@@ -12,7 +12,7 @@ export default function Login() {
   const nav = useNavigate();
   const handleLogin = async (values: any) => {
     console.log('login', values);
-    const res = await loginServices();
+    const res = await loginServices(values);
     if (res.errno === 0) {
       message.success('登录成功！');
       nav('/question/manage');
