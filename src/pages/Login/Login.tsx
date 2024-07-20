@@ -1,15 +1,22 @@
-import { Button, Checkbox, Form, Input, Space } from 'antd';
+import { Button, Checkbox, Form, Input, message, Space } from 'antd';
 import { Typography } from 'antd';
 import React from 'react';
 import styles from './Login.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { REGISTER_PATHNAME } from '../../router';
+import { loginServices } from '../../services/login';
 
 const { Title } = Typography;
 
 export default function Login() {
-  const handleLogin = (values: any) => {
+  const nav = useNavigate();
+  const handleLogin = async (values: any) => {
     console.log('login', values);
+    const res = await loginServices();
+    if (res.errno === 0) {
+      message.success('登录成功！');
+      nav('/question/manage');
+    }
   };
   return (
     <div className={styles.container}>
