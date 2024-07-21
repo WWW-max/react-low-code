@@ -1,3 +1,4 @@
 const questionMockList = require('./question');
-const mockList = [...questionMockList];
+const userMockList = require('./user');
+const mockList = [...questionMockList, ...userMockList];
 module.exports = mockList;

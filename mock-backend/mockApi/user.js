@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+const Mock = require('mockjs');
 const Random = Mock.Random;
 module.exports = [
   {
