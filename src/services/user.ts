@@ -8,7 +8,6 @@ type LoginParamsType = {
 type RegisterParamsType = {
   username: string;
   password: string;
-  confirm: string;
   nickname: string;
 };
 /** 用户登录接口 */

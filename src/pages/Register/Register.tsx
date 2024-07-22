@@ -1,13 +1,32 @@
-import { Button, Form, Space, Typography } from 'antd';
+import { Button, Form, message, Space, Typography } from 'antd';
 import Input from 'antd/es/input/Input';
 import Link from 'antd/es/typography/Link';
 import React from 'react';
 import styles from './Register.module.scss';
+import { useRequest } from 'ahooks';
+import { registerServices } from '../../services/user';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN_PATHNAME } from '../../router';
 
 const { Title } = Typography;
 export default function Register() {
+  const nav = useNavigate();
+  const { run } = useRequest(
+    async values => {
+      const { username, password, nickname } = values;
+      const data = await registerServices({ username, password, nickname });
+      return data;
+    },
+    {
+      manual: true,
+      onSuccess() {
+        message.success('注册成功！');
+        nav(LOGIN_PATHNAME); // 跳转到登录页
+      },
+    }
+  );
   const onFinish = (values: any) => {
-    console.log('success', values);
+    run(values);
   };
   return (
     <div className={styles.container}>

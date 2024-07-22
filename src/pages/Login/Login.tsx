@@ -1,21 +1,58 @@
 import { Button, Checkbox, Form, Input, message, Space } from 'antd';
 import { Typography } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import { REGISTER_PATHNAME } from '../../router';
+import { MANAGE_INDEX_PATHNAME, REGISTER_PATHNAME } from '../../router';
 import { loginServices } from '../../services/user';
+import { setUserToken } from '../../utils/user-token';
 
 const { Title } = Typography;
 
+const USER_KEY = 'USERNAME';
+const PASSWORD_KEY = 'PASSWORD';
+
+/** 存储用户名密码到本地 */
+const rememberUserToStorage = (username: string, password: string) => {
+  localStorage.setItem(USER_KEY, username);
+  localStorage.setItem(PASSWORD_KEY, password);
+};
+/** 获取用户名密码 */
+const getUserFromStorage = () => {
+  return {
+    username: localStorage.getItem(USER_KEY) || '',
+    password: localStorage.getItem(PASSWORD_KEY),
+  };
+};
+const deleteUserFromStorage = () => {
+  localStorage.removeItem(USER_KEY);
+  localStorage.removeItem(PASSWORD_KEY);
+};
+
 export default function Login() {
   const nav = useNavigate();
+
+  const [form] = Form.useForm(); // 第三方hooks
+
+  useEffect(() => {
+    const { username, password } = getUserFromStorage();
+    form.setFieldsValue({ username, password });
+  }, []);
   const handleLogin = async (values: any) => {
-    console.log('login', values);
-    const res = await loginServices(values);
-    if (res.errno === 0) {
+    const { username, password, remember } = values;
+    const res = await loginServices({ username, password });
+    if (res?.token) {
+      setUserToken(res?.token || ''); // 存储token
+
       message.success('登录成功！');
-      nav('/question/manage');
+      nav(MANAGE_INDEX_PATHNAME); // 导航到我的问卷
+    }
+
+    if (remember) {
+      // 记住用户名密码
+      rememberUserToStorage(username, password);
+    } else {
+      deleteUserFromStorage();
     }
   };
   return (
@@ -26,6 +63,7 @@ export default function Login() {
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
         onFinish={handleLogin}
+        form={form}
       >
         <Form.Item
           name="username"
