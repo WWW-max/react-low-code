@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRequest } from 'ahooks';
-import { updateQuestionService } from '../../services/question';
+import { duplicateQuestionService, updateQuestionService } from '../../services/question';
 
 type QuestionCardProps = {
   _id: string;
@@ -34,6 +34,17 @@ export default function QuestionCard(props: QuestionCardProps) {
       onSuccess() {
         setIsStarState(!isStarState); // 更新state
         message.success('已更新');
+      },
+    }
+  );
+  /** 复制 */
+  const { run: duplicateQuestion, loading: duplicateQuestionLoading } = useRequest(
+    async () => await duplicateQuestionService(_id),
+    {
+      manual: true,
+      onSuccess(result) {
+        message.success('复制成功');
+        nav(`/question/edit/${result.id}`); // 跳转到问卷编辑页
       },
     }
   );
@@ -85,7 +96,12 @@ export default function QuestionCard(props: QuestionCardProps) {
                 {isStarState ? '取消收藏' : '收藏'}
               </Button>
             </span>
-            <Button icon={<CopyOutlined />} type="text">
+            <Button
+              icon={<CopyOutlined />}
+              type="text"
+              onClick={duplicateQuestion}
+              loading={duplicateQuestionLoading}
+            >
               复制
             </Button>
             <Button icon={<DeleteOutlined />} type="text">
