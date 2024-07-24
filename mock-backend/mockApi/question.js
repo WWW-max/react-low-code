@@ -34,4 +34,14 @@ module.exports = [
       };
     },
   },
+  {
+    // 更新单个问卷
+    path: '/api/question/:id',
+    method: 'patch',
+    response() {
+      return {
+        errno: 0,
+      };
+    },
+  },
 ];

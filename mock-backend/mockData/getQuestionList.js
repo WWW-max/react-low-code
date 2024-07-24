@@ -5,7 +5,7 @@ module.exports = function getQuestionList(opt = {}) {
   const list = [];
   for (let i = 0; i < len; i++) {
     list.push({
-      _id: Random.id(),
+      _id: Random.id().toString(),
       title: Random.ctitle(5, 10),
       isPublished: Random.boolean(),
       isStar,

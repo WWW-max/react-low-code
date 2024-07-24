@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Card, Space, Tag } from 'antd';
+import React, { useState } from 'react';
+import { Button, Card, message, Space, Tag } from 'antd';
 import styles from './QuestionCard.module.scss';
 import {
   BarChartOutlined,
@@ -9,9 +9,11 @@ import {
   StarOutlined,
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useRequest } from 'ahooks';
+import { updateQuestionService } from '../../services/question';
 
 type QuestionCardProps = {
-  _id: number;
+  _id: string;
   title: string;
   isPublished: boolean;
   isStar: boolean;
@@ -20,13 +22,26 @@ type QuestionCardProps = {
 };
 export default function QuestionCard(props: QuestionCardProps) {
   const { _id, title, isPublished, isStar, answerCount, createdAt } = props;
-  const { pathname } = useLocation();
   const nav = useNavigate();
+  /** 修改  收藏 */
+  const [isStarState, setIsStarState] = useState(isStar);
+  const { run: changeStar, loading: changeStarLoading } = useRequest(
+    async () => {
+      await updateQuestionService(_id, { isStar: !isStarState });
+    },
+    {
+      manual: true,
+      onSuccess() {
+        setIsStarState(!isStarState); // 更新state
+        message.success('已更新');
+      },
+    }
+  );
   return (
     <Card
       title={
         <span>
-          {pathname.startsWith('/manage/star') ? <StarOutlined style={{ color: 'red' }} /> : null}
+          {isStarState && <StarOutlined style={{ color: 'red' }} />}
           <span>{title}</span>
         </span>
       }
@@ -61,15 +76,14 @@ export default function QuestionCard(props: QuestionCardProps) {
         <div className={styles.right}>
           <Space>
             <span>
-              {isStar ? (
-                <Button icon={<StarOutlined style={{ color: 'red' }} />} type="text">
-                  取消收藏
-                </Button>
-              ) : (
-                <Button icon={<StarOutlined />} type="text">
-                  收藏
-                </Button>
-              )}
+              <Button
+                icon={<StarOutlined style={isStarState ? { color: 'red' } : {}} />}
+                type="text"
+                onClick={changeStar}
+                loading={changeStarLoading}
+              >
+                {isStarState ? '取消收藏' : '收藏'}
+              </Button>
             </span>
             <Button icon={<CopyOutlined />} type="text">
               复制
