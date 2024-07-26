@@ -57,4 +57,14 @@ module.exports = [
       };
     },
   },
+  {
+    // 批量删除
+    path: '/api/question',
+    method: 'delete',
+    response() {
+      return {
+        errno: 0,
+      }
+    }
+  }
 ];

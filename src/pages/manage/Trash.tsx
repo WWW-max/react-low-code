@@ -9,7 +9,7 @@ import ListPage from '../../components/ListPage/ListPage';
 
 export default function Trash() {
   useTitle('问卷低代码平台 - 回收站');
-  const { data = {}, loading } = useLoadQuestionListData({ isDeleted: true });
+  const { data = {}, loading, refresh } = useLoadQuestionListData({ isDeleted: true });
   const { list = [], total = 0 } = data;
   return (
     <div>
@@ -27,7 +27,7 @@ export default function Trash() {
       {!loading && list.length === 0 && <Empty description="暂无数据" />}
       {!loading && list.length > 0 && (
         <div className={styles.content}>
-          <QuestionTable dataSource={list} />
+          <QuestionTable dataSource={list} refresh={refresh}/>
         </div>
       )}
       <div className={styles.footer}>
