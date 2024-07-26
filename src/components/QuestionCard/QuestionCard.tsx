@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Card, message, Space, Tag } from 'antd';
+import { Button, Card, message, Modal, Popconfirm, Space, Tag } from 'antd';
+import type { PopconfirmProps } from 'antd';
 import styles from './QuestionCard.module.scss';
 import {
   BarChartOutlined,
   CopyOutlined,
   DeleteOutlined,
   EditOutlined,
+  ExclamationCircleOutlined,
   StarOutlined,
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -48,6 +50,33 @@ export default function QuestionCard(props: QuestionCardProps) {
       },
     }
   );
+  /** 假删除 */
+  const [isDeletedState, setIsDeletedState] = useState(false);
+  const { run: deleteQuestion, loading: deletedQuestionLoading } = useRequest(
+    async () => {
+      const data = await updateQuestionService(_id, { isDeleted: true });
+      return data;
+    },
+    {
+      manual: true,
+      onSuccess() {
+        setIsDeletedState(true);
+        message.success('删除成功！');
+      },
+    }
+  );
+  function del() {
+    Modal.confirm({
+      title: '确定删除吗？',
+      icon: <ExclamationCircleOutlined />,
+      onOk: deleteQuestion,
+      okText: '确认',
+      cancelText: '取消',
+    });
+  }
+  // 已经删除的问卷，不再渲染卡片
+  if (isDeletedState) return null;
+
   return (
     <Card
       title={
@@ -96,15 +125,18 @@ export default function QuestionCard(props: QuestionCardProps) {
                 {isStarState ? '取消收藏' : '收藏'}
               </Button>
             </span>
-            <Button
-              icon={<CopyOutlined />}
-              type="text"
-              onClick={duplicateQuestion}
-              loading={duplicateQuestionLoading}
+
+            <Popconfirm
+              title="确定复制该问卷？"
+              okText="确定"
+              cancelText="取消"
+              onConfirm={duplicateQuestion}
             >
-              复制
-            </Button>
-            <Button icon={<DeleteOutlined />} type="text">
+              <Button icon={<CopyOutlined />} type="text" loading={duplicateQuestionLoading}>
+                复制
+              </Button>
+            </Popconfirm>
+            <Button icon={<DeleteOutlined />} type="text" onClick={del}>
               删除
             </Button>
           </Space>
