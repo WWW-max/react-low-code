@@ -25,6 +25,8 @@ type QuestionCardProps = {
 export default function QuestionCard(props: QuestionCardProps) {
   const { _id, title, isPublished, isStar, answerCount, createdAt } = props;
   const nav = useNavigate();
+  const { pathname } = useLocation();
+  const isStarPage = pathname.startsWith('/manage/star');
   /** 修改  收藏 */
   const [isStarState, setIsStarState] = useState(isStar);
   const { run: changeStar, loading: changeStarLoading } = useRequest(
@@ -74,9 +76,9 @@ export default function QuestionCard(props: QuestionCardProps) {
       cancelText: '取消',
     });
   }
-  // 已经删除的问卷，不再渲染卡片
-  if (isDeletedState) return null;
-
+  // 已经删除的问卷或者收藏问卷中取消收藏 不再渲染卡片
+  if (isDeletedState || (isStarPage && !isStarState)) return null;
+  
   return (
     <Card
       title={
