@@ -23,7 +23,7 @@ export default function ManageLayout() {
   const { loading, run } = useRequest(createQuestionServices, {
     manual: true,
     onSuccess: res => {
-      nav(`/question/edit/${res.data.id}`);
+      nav(`/question/edit/${res?.id}`);
       message.success('创建问卷成功！');
     },
     onError: error => {
