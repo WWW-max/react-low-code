@@ -9,6 +9,12 @@ type SearchOption = {
   page: number;
   pageSize: number;
 };
+/** 获取单个问卷信息 */
+export async function getSingleQuestionService(id: string): Promise<ResDataType> {
+  const url = `/api/question/${id}`;
+  const data = (await axios.get(url)) as ResDataType;
+  return data;
+}
 /** 创建问卷 */
 export async function createQuestionServices(): Promise<ResDataType> {
   const url = '/api/question';
