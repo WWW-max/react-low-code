@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import componentsReducer from './componentsReducer';
+import componentsReducer, { ComponentsStateType } from './componentsReducer';
 
 export default configureStore({
-    reducer: {
-        components: componentsReducer
-    }
-})
+  reducer: {
+    components: componentsReducer,
+  },
+});
+
+export type StateType = {
+  components: ComponentsStateType;
+};
