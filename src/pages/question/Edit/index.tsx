@@ -5,6 +5,7 @@ import EditCanvas from './EditCanvas/EditCanvas';
 import useLoadQuestionData from '../../../hooks/useLoadQuestionData';
 import EditHeader from './EditHeader/EditHeader';
 import LeftPanel from './LeftPanel/LeftPanel';
+import RightPanel from './RightPanel/RightPanel';
 
 export default function Edit() {
   /** 获取单个问卷信息 */
@@ -24,7 +25,9 @@ export default function Edit() {
               <EditCanvas loading={loading} />
             </div>
           </div>
-          <div className={styles.right}>right</div>
+          <div className={styles.right}>
+            <RightPanel />
+          </div>
         </div>
       </div>
     </div>
