@@ -1,5 +1,5 @@
 import { Space, Spin } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import styles from './common.module.scss';
 import ListSearch from '../../components/ListSearch/ListSearch';

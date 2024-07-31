@@ -30,7 +30,7 @@ export async function getQuestionServices(opt: Partial<SearchOption> = {}): Prom
 /** 更新单个问卷 */
 export async function updateQuestionService(
   id: string,
-  opt: { [key: string]: any }
+  opt: { [key: string]: unknown }
 ): Promise<ResDataType> {
   const url = `/api/question/${id}`;
   const data = (await axios.patch(url, opt)) as ResDataType;
@@ -45,6 +45,6 @@ export async function duplicateQuestionService(id: string): Promise<ResDataType>
 /** 批量彻底删除问卷 */
 export async function deleteQuestionService(ids: string[]): Promise<ResDataType> {
   const url = '/api/question';
-  const data = await axios.delete(url);
+  const data = await axios.delete(url, { params: { ids } });
   return data;
 }

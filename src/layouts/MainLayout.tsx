@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
 import { SnippetsFilled } from '@ant-design/icons';
@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 // mock.js只能拦截XMLHttpRequest请求，不能拦截fetch；
 // 直接导入使用上线前需要删除，不建议这样用
 // import '../_mock/index';
-import axios from 'axios';
+// import axios from 'axios';
 
 const { Header, Content, Footer } = Layout;
 export default function MainLayout() {

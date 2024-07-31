@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card, message, Modal, Popconfirm, Space, Tag } from 'antd';
-import type { PopconfirmProps } from 'antd';
+// import type { PopconfirmProps } from 'antd';
 import styles from './QuestionCard.module.scss';
 import {
   BarChartOutlined,
@@ -54,7 +54,7 @@ export default function QuestionCard(props: QuestionCardProps) {
   );
   /** 假删除 */
   const [isDeletedState, setIsDeletedState] = useState(false);
-  const { run: deleteQuestion, loading: deletedQuestionLoading } = useRequest(
+  const { run: deleteQuestion } = useRequest(
     async () => {
       const data = await updateQuestionService(_id, { isDeleted: true });
       return data;
@@ -78,7 +78,7 @@ export default function QuestionCard(props: QuestionCardProps) {
   }
   // 已经删除的问卷或者收藏问卷中取消收藏 不再渲染卡片
   if (isDeletedState || (isStarPage && !isStarState)) return null;
-  
+
   return (
     <Card
       title={

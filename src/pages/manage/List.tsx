@@ -1,5 +1,5 @@
-import { produce } from 'immer';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+// import { produce } from 'immer';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import { Empty, Space, Spin, Typography } from 'antd';
 import styles from './common.module.scss';

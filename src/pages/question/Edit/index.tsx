@@ -1,17 +1,18 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import styles from './index.module.scss';
-import EditCanvas from './EditCanvas';
+import EditCanvas from './EditCanvas/EditCanvas';
 import useLoadQuestionData from '../../../hooks/useLoadQuestionData';
+import EditHeader from './EditHeader/EditHeader';
 
 export default function Edit() {
   /** 获取单个问卷信息 */
   const { loading } = useLoadQuestionData();
 
-  const { id } = useParams();
+  // const { id } = useParams();
   return (
     <div className={styles.container}>
-      <div>header</div>
+      <EditHeader />
       <div className={styles['content-wrapper']}>
         <div className={styles.content}>
           <div className={styles.left}>left</div>

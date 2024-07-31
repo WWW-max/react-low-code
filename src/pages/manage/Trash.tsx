@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './common.module.scss';
-import { Empty, Space, Spin } from 'antd';
-import QuestionTable, { DataSourceProps } from '../../components/QuestionTable/QuestionTable';
+import { Empty, Spin } from 'antd';
+import QuestionTable from '../../components/QuestionTable/QuestionTable';
 import ListSearch from '../../components/ListSearch/ListSearch';
 import { useTitle } from 'ahooks';
 import useLoadQuestionListData from '../../hooks/useLoadQuestionListData';
@@ -27,7 +27,7 @@ export default function Trash() {
       {!loading && list.length === 0 && <Empty description="暂无数据" />}
       {!loading && list.length > 0 && (
         <div className={styles.content}>
-          <QuestionTable dataSource={list} refresh={refresh}/>
+          <QuestionTable dataSource={list} refresh={refresh} />
         </div>
       )}
       <div className={styles.footer}>

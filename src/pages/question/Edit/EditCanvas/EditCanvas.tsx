@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
-import QuestionTitle from '../../../components/QuestionComponents/QuestionTitle/Component';
-import QuestionInput from '../../../components/QuestionComponents/QuestionInput/Component';
-import useGetComponentInfo from '../../../hooks/useGetComponentInfo';
-import { ComponentInfoType } from '../../../store/componentsReducer';
-import { getComponentConfByType } from '../../../components/QuestionComponents';
+import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
+import { ComponentInfoType } from '../../../../store/componentsReducer';
+import { getComponentConfByType } from '../../../../components/QuestionComponents';
 
 type PropsType = {
   loading: boolean;
