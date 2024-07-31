@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 import EditCanvas from './EditCanvas/EditCanvas';
 import useLoadQuestionData from '../../../hooks/useLoadQuestionData';
 import EditHeader from './EditHeader/EditHeader';
+import LeftPanel from './LeftPanel/LeftPanel';
 
 export default function Edit() {
   /** 获取单个问卷信息 */
@@ -15,7 +16,9 @@ export default function Edit() {
       <EditHeader />
       <div className={styles['content-wrapper']}>
         <div className={styles.content}>
-          <div className={styles.left}>left</div>
+          <div className={styles.left}>
+            <LeftPanel />
+          </div>
           <div className={styles.main}>
             <div className={styles['canvas-wrapper']}>
               <EditCanvas loading={loading} />
