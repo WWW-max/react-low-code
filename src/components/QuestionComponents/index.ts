@@ -16,18 +16,20 @@ import QuestionCheckboxConf, { QuestionCheckboxPropsType } from './QuestionCheck
 import QuestionRadioConf, { QuestionRadioPropsType } from './QuestionRadio';
 
 /** 统一 各个组件的 props type */
-type ComponentPropsType = QuestionInputPropsType &
+export type ComponentPropsType = QuestionInputPropsType &
   QuestionTitlePropsType &
   QuestionInfoPropsType &
   QuestionParagraphPropsType &
   QuestionTextareaPropsType &
   QuestionCheckboxPropsType &
   QuestionRadioPropsType;
+
 /** 统一 组件的 配置 type */
-type ComponentConfType = {
+export type ComponentConfType = {
   title: string;
   type: string;
   Component: FC<ComponentPropsType>;
+  defaultProps: ComponentPropsType;
 };
 
 /** 全部的组件的配置列表 */
@@ -39,6 +41,25 @@ const componentConfList: ComponentConfType[] = [
   QuestionTextareaConf,
   QuestionCheckboxConf,
   QuestionRadioConf,
+];
+
+/** 组件库面板中的组件分组 */
+export const componentConfGroup = [
+  {
+    groupId: 'textGroup',
+    groupName: '文本显示',
+    componentsConf: [QuestionInfoConf, QuestionTitleConf, QuestionParagraphConf],
+  },
+  {
+    groupId: 'inputGroup',
+    groupName: '用户输入',
+    componentsConf: [QuestionInputConf, QuestionTextareaConf],
+  },
+  {
+    groupId: 'chooseGroup',
+    groupName: '用户选择',
+    componentsConf: [QuestionRadioConf, QuestionCheckboxConf],
+  },
 ];
 
 /** 根据组件类型获取组件配置信息方法 */
