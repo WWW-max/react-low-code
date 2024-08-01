@@ -29,10 +29,10 @@ module.exports = [
           title: Random.ctitle(),
           isDeleted: false,
           isPublished: true,
-          componentList: getComponentList()
-        }
-      }
-    }
+          componentList: getComponentList(),
+        },
+      };
+    },
   },
   {
     // 获取问卷
@@ -82,7 +82,7 @@ module.exports = [
     response() {
       return {
         errno: 0,
-      }
-    }
-  }
+      };
+    },
+  },
 ];

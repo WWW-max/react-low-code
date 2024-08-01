@@ -44,7 +44,9 @@ export default [
     rules: {
       quotes: ['error', 'single'],
       'no-console': 'warn',
-      'no-unused-vars': 'error',
+      'no-unused-vars': 'warn', // 未使用的变量
+      '@typescript-eslint/no-explicit-any': 'warn', // 直接写any
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
 ];
