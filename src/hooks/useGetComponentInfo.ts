@@ -9,9 +9,10 @@ function useGetComponentInfo() {
   // redux store
   const components = useSelector<StateType>(state => state.components) as ComponentsStateType;
 
-  const { componentList } = components;
+  const { selectedId, componentList } = components;
 
   return {
+    selectedId,
     componentList,
   };
 }

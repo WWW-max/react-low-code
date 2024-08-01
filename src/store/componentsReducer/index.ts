@@ -38,9 +38,13 @@ export const componentsSlice = createSlice({
         insertNewComponent(draft, newComponent);
       }
     ),
+    /** 修改选中id */
+    changeSelectedId: produce((draft: ComponentsStateType, action: PayloadAction<string>) => {
+      draft.selectedId = action.payload;
+    }),
   },
 });
 
-export const { resetComponents, addComponent } = componentsSlice.actions;
+export const { resetComponents, addComponent, changeSelectedId } = componentsSlice.actions;
 
 export default componentsSlice.reducer;
