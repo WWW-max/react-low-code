@@ -11,6 +11,7 @@ import styles from './EditCanvas.module.scss';
 import { useDispatch } from 'react-redux';
 import SortableContainer from '../../../../components/DragSortable/SortableContainer';
 import SortableItem from '../../../../components/DragSortable/SortableItem';
+import useBindCanvasKeyPress from '../../../../hooks/useBindCanvasKeyPress';
 
 type PropsType = {
   loading: boolean;
@@ -29,6 +30,9 @@ const genComponent = (componentInfo: ComponentInfoType) => {
 const EditCanvas: FC<PropsType> = (props: PropsType) => {
   const { componentList, selectedId } = useGetComponentInfo();
   const dispatch = useDispatch();
+
+  /** 绑定快捷键 */
+  useBindCanvasKeyPress();
 
   /** 点击选中 */
   function handleClick(event: MouseEvent, id: string) {
