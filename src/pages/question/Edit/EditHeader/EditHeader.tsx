@@ -9,6 +9,7 @@ import { changePageTile } from '../../../../store/pageInfoReducer';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
 import { useDebounce, useDebounceEffect, useKeyPress, useRequest } from 'ahooks';
 import { updateQuestionService } from '../../../../services/question';
+import EditToolbar from '../EditToolbar/EditToolbar';
 
 const { Title } = Typography;
 
@@ -130,7 +131,9 @@ const EditHeader: FC = () => {
             <TitleElem />
           </Space>
         </div>
-        <div className={styles.main}>main</div>
+        <div className={styles.main}>
+          <EditToolbar />
+        </div>
         <div className={styles.right}>
           <Space>
             <SaveButton />

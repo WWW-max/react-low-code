@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { produce } from 'immer';
-import { insertNewComponent } from './utils';
+import { getNextSelectedId, insertNewComponent } from './utils';
 import { ComponentPropsType } from '../../components/QuestionComponents';
 import { arrayMove } from '@dnd-kit/sortable';
 /** 单个组件状态类型 */
@@ -72,6 +72,18 @@ export const componentsSlice = createSlice({
         draft.componentList = arrayMove(curComponentList, oldIndex, newIndex);
       }
     ),
+    /** 删除选中的组件 */
+    removeSelectedComponent: produce((draft: ComponentsStateType) => {
+      const { componentList = [], selectedId: removeId } = draft;
+      if (!removeId) return;
+
+      // 重新计算 选中id
+      const newSelectedId = getNextSelectedId(removeId, componentList);
+      draft.selectedId = newSelectedId;
+
+      const index = componentList.findIndex(c => c.fe_id === removeId);
+      componentList.splice(index, 1);
+    }),
   },
 });
 
@@ -81,6 +93,7 @@ export const {
   changeSelectedId,
   changeComponentProps,
   moveComponent,
+  removeSelectedComponent,
 } = componentsSlice.actions;
 
 export default componentsSlice.reducer;
