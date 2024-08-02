@@ -71,15 +71,15 @@ const SaveButton: FC = () => {
   });
 
   /** 自动保存(不是定期保存，不是定时器，是改动后自动保存) */
-  useDebounceEffect(
-    () => {
-      save();
-    },
-    [componentList, pageInfo],
-    {
-      wait: 1000,
-    }
-  );
+  // useDebounceEffect(
+  //   () => {
+  //     save();
+  //   },
+  //   [componentList, pageInfo],
+  //   {
+  //     wait: 1000,
+  //   }
+  // );
 
   return (
     <Button onClick={save} loading={loading} icon={loading ? <LoadingOutlined /> : null}>

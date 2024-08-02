@@ -5,6 +5,8 @@ import {
   DownOutlined,
   EyeInvisibleOutlined,
   LockOutlined,
+  RedoOutlined,
+  UndoOutlined,
   UpOutlined,
 } from '@ant-design/icons';
 import { Button, Space, Tooltip } from 'antd';
@@ -19,6 +21,7 @@ import {
 } from '../../../../store/componentsReducer';
 import { useDispatch } from 'react-redux';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 export default function EditToolbar() {
   const dispatch = useDispatch();
@@ -55,16 +58,26 @@ export default function EditToolbar() {
   };
 
   /** 上移 */
-  function moveUp() {
+  const moveUp = () => {
     if (isFirst) return;
     dispatch(moveComponent({ oldIndex: selectedIndex, newIndex: selectedIndex - 1 }));
-  }
+  };
 
   /** 下移 */
-  function moveDown() {
+  const moveDown = () => {
     if (isLast) return;
     dispatch(moveComponent({ oldIndex: selectedIndex, newIndex: selectedIndex + 1 }));
-  }
+  };
+
+  /** 撤销 */
+  const undo = () => {
+    dispatch(UndoActionCreators.undo());
+  };
+
+  /** 重做 */
+  const redo = () => {
+    dispatch(UndoActionCreators.redo());
+  };
   return (
     <Space>
       <Tooltip title="删除">
@@ -107,6 +120,12 @@ export default function EditToolbar() {
           onClick={moveDown}
           disabled={isLast}
         ></Button>
+      </Tooltip>
+      <Tooltip title="撤销">
+        <Button shape="circle" icon={<UndoOutlined />} onClick={undo}></Button>
+      </Tooltip>
+      <Tooltip title="重做">
+        <Button shape="circle" icon={<RedoOutlined />} onClick={redo}></Button>
       </Tooltip>
     </Space>
   );

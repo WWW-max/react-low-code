@@ -129,7 +129,6 @@ export const componentsSlice = createSlice({
     copySelectedComponent: produce((draft: ComponentsStateType) => {
       const { selectedId, componentList = [] } = draft;
       const selectedComponent = componentList.find(c => c.fe_id === selectedId);
-      console.log('selectedComponent', selectedComponent);
       if (selectedComponent == null) return;
       draft.copiedComponent = cloneDeep(selectedComponent); // 深拷贝
     }),
