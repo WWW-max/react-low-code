@@ -45,23 +45,27 @@ const EditCanvas: FC<PropsType> = (props: PropsType) => {
   return (
     <SortableContainer items={componentListWithId} onDragEnd={handleDragEnd}>
       <div className={styles.canvas}>
-        {componentList.map(cinfo => {
-          const { fe_id } = cinfo;
-          /** 拼接class name */
-          const wrapperDefaultClassName = styles['component-wrapper'];
-          const selectedClassName = styles.selected;
-          const wrapperClassName = classNames({
-            [wrapperDefaultClassName]: true,
-            [selectedClassName]: fe_id === selectedId,
-          });
-          return (
-            <SortableItem key={fe_id} id={fe_id}>
-              <div className={wrapperClassName} onClick={e => handleClick(e, fe_id)}>
-                <div className={styles.component}>{genComponent(cinfo)}</div>
-              </div>
-            </SortableItem>
-          );
-        })}
+        {componentList
+          .filter(c => !c.isHidden)
+          .map(cinfo => {
+            const { fe_id, isLocked } = cinfo;
+            /** 拼接class name */
+            const wrapperDefaultClassName = styles['component-wrapper'];
+            const selectedClassName = styles.selected;
+            const lockedClassName = styles.locked;
+            const wrapperClassName = classNames({
+              [wrapperDefaultClassName]: true,
+              [selectedClassName]: fe_id === selectedId,
+              [lockedClassName]: isLocked,
+            });
+            return (
+              <SortableItem key={fe_id} id={fe_id}>
+                <div className={wrapperClassName} onClick={e => handleClick(e, fe_id)}>
+                  <div className={styles.component}>{genComponent(cinfo)}</div>
+                </div>
+              </SortableItem>
+            );
+          })}
       </div>
     </SortableContainer>
   );

@@ -4,7 +4,7 @@ import { QuestionParagraphDefaultProps, QuestionParagraphPropsType } from './int
 
 const { TextArea } = Input;
 const PropComponent: FC<QuestionParagraphPropsType> = (props: QuestionParagraphPropsType) => {
-  const { text, isCenter, onChange } = { ...QuestionParagraphDefaultProps, ...props };
+  const { text, isCenter, onChange, disabled } = { ...QuestionParagraphDefaultProps, ...props };
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const PropComponent: FC<QuestionParagraphPropsType> = (props: QuestionParagraphP
   }
 
   return (
-    <Form layout="vertical" form={form} onValuesChange={handleValuesChange}>
+    <Form layout="vertical" form={form} onValuesChange={handleValuesChange} disabled={disabled}>
       <Form.Item
         label="段落内容"
         name="text"

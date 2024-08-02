@@ -8,9 +8,11 @@ export type ComponentInfoType = {
   fe_id: string; // 前端生成的id, 服务端Mongodb不认这种格式，所以自定义一个fe_id
   type: string; // 组件类型
   title: string;
+  isHidden?: boolean; // 组件是否隐藏
+  isLocked?: boolean; // 组件是否被锁定
   props: ComponentPropsType;
 };
-/** 编辑页面状态类型 */
+/** 编辑器页面状态类型 */
 export type ComponentsStateType = {
   /** 当前选中的组件Id */
   selectedId: string;
@@ -84,9 +86,42 @@ export const componentsSlice = createSlice({
       const index = componentList.findIndex(c => c.fe_id === removeId);
       componentList.splice(index, 1);
     }),
+    /** 隐藏/显示选中组件 */
+    changeComponentHidden: produce(
+      (draft: ComponentsStateType, action: PayloadAction<{ fe_id: string; isHidden: boolean }>) => {
+        const { componentList = [] } = draft;
+        const { fe_id, isHidden } = action.payload;
+
+        // 重新计算 selectedId
+        let newSelectedId = '';
+        if (isHidden) {
+          // 要隐藏
+          newSelectedId = getNextSelectedId(fe_id, componentList);
+        } else {
+          // 要显示
+          newSelectedId = fe_id;
+        }
+        draft.selectedId = newSelectedId;
+
+        const curComponent = componentList.find(c => c.fe_id === fe_id);
+        if (curComponent) {
+          curComponent.isHidden = isHidden;
+        }
+      }
+    ),
+    /** 锁定/解锁组件 */
+    toggleComponentLocked: produce(
+      (draft: ComponentsStateType, action: PayloadAction<{ fe_id: string }>) => {
+        const { fe_id } = action.payload;
+
+        const curComp = draft.componentList.find(c => c.fe_id === fe_id);
+        if (curComp) {
+          curComp.isLocked = !curComp.isLocked;
+        }
+      }
+    ),
   },
 });
-
 export const {
   resetComponents,
   addComponent,
@@ -94,6 +129,8 @@ export const {
   changeComponentProps,
   moveComponent,
   removeSelectedComponent,
+  changeComponentHidden,
+  toggleComponentLocked,
 } = componentsSlice.actions;
 
 export default componentsSlice.reducer;
