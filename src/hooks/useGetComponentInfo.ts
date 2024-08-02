@@ -9,11 +9,14 @@ function useGetComponentInfo() {
   // redux store
   const components = useSelector<StateType>(state => state.components) as ComponentsStateType;
 
-  const { selectedId, componentList } = components;
+  const { selectedId, componentList = [] } = components;
+
+  const selectedComponent = componentList.find(c => c.fe_id === selectedId);
 
   return {
-    selectedId,
-    componentList,
+    selectedId, // 选中的Id
+    componentList, // 组件列表
+    selectedComponent, // 选中的组件信息
   };
 }
 

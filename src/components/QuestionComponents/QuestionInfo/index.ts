@@ -1,3 +1,4 @@
+import PropComponent from './PropComponent';
 import Component from './Component';
 import { QuestionInfoDefaultProps } from './interface';
 
@@ -8,5 +9,6 @@ export default {
   title: '问卷对象',
   type: 'questionInfo',
   Component,
+  PropComponent,
   defaultProps: QuestionInfoDefaultProps,
 };

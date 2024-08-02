@@ -9,7 +9,6 @@ export function insertNewComponent(draft: ComponentsStateType, newComponent: Com
   const { selectedId, componentList } = draft;
   /** 当前选中组件的索引 */
   const index = componentList.findIndex(c => c.fe_id === selectedId);
-  console.log('draft', selectedId, componentList);
 
   if (index < 0) {
     // 没有选中任何组件，则尾插

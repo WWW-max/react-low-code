@@ -3,6 +3,7 @@
  */
 import Component from './Component';
 import { QuestionTitleDefaultProps } from './interface';
+import PropComponent from './PropComponent';
 
 /** 导出props type 和 默认 props */
 export * from './interface';
@@ -12,5 +13,6 @@ export default {
   title: '标题',
   type: 'questionTitle', // 与后端统一好的组件类型，必须唯一
   Component, // 画布中显示的组件
+  PropComponent, // 设置属性面板中显示的组件
   defaultProps: QuestionTitleDefaultProps,
 };
