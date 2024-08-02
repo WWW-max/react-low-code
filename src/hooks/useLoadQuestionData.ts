@@ -1,9 +1,13 @@
+/**
+ * 加载单个问卷信息
+ */
 import { useRequest } from 'ahooks';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSingleQuestionService } from '../services/question';
 import { useEffect } from 'react';
 import { resetComponents } from '../store/componentsReducer';
+import { resetPageInfo } from '../store/pageInfoReducer';
 
 function useLoadQuestionData() {
   const { id = '' } = useParams();
@@ -19,7 +23,14 @@ function useLoadQuestionData() {
   useEffect(() => {
     if (!data) return;
 
-    const { componentList = [] } = data;
+    const {
+      title = '',
+      desc = '',
+      js = '',
+      css = '',
+      isPublished = false,
+      componentList = [],
+    } = data;
 
     /** 获取默认的 selectedId */
     let selectedId = '';
@@ -29,6 +40,9 @@ function useLoadQuestionData() {
 
     /** 把 componentList 存储到 Redux store 中 */
     dispatch(resetComponents({ componentList, selectedId }));
+
+    /** 把页面信息pageInfo 存储到 Redux store 中 */
+    dispatch(resetPageInfo({ title, desc, js, css, isPublished }));
   }, [data]);
 
   /** 判断 id 变化，执行ajax加载问卷数据 */

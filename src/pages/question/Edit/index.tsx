@@ -6,12 +6,18 @@ import useLoadQuestionData from '../../../hooks/useLoadQuestionData';
 import EditHeader from './EditHeader/EditHeader';
 import LeftPanel from './LeftPanel/LeftPanel';
 import RightPanel from './RightPanel/RightPanel';
+import { changeSelectedId } from '../../../store/componentsReducer';
+import { useDispatch } from 'react-redux';
 
 export default function Edit() {
+  const dispatch = useDispatch();
+
   /** 获取单个问卷信息 */
   const { loading } = useLoadQuestionData();
 
-  // const { id } = useParams();
+  function clearSelectedId() {
+    dispatch(changeSelectedId(''));
+  }
   return (
     <div className={styles.container}>
       <EditHeader />
@@ -20,7 +26,7 @@ export default function Edit() {
           <div className={styles.left}>
             <LeftPanel />
           </div>
-          <div className={styles.main}>
+          <div className={styles.main} onClick={clearSelectedId}>
             <div className={styles['canvas-wrapper']}>
               <EditCanvas loading={loading} />
             </div>
