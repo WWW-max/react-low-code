@@ -9,7 +9,7 @@ function useGetComponentInfo() {
   // redux store
   const components = useSelector<StateType>(state => state.components) as ComponentsStateType;
 
-  const { selectedId, componentList = [] } = components;
+  const { selectedId, componentList = [], copiedComponent } = components;
 
   const selectedComponent = componentList.find(c => c.fe_id === selectedId);
 
@@ -17,6 +17,7 @@ function useGetComponentInfo() {
     selectedId, // 选中的Id
     componentList, // 组件列表
     selectedComponent, // 选中的组件信息
+    copiedComponent, // 复制的组件信息
   };
 }
 

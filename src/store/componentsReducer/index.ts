@@ -3,6 +3,8 @@ import { produce } from 'immer';
 import { getNextSelectedId, insertNewComponent } from './utils';
 import { ComponentPropsType } from '../../components/QuestionComponents';
 import { arrayMove } from '@dnd-kit/sortable';
+import cloneDeep from 'lodash.clonedeep';
+import { nanoid } from 'nanoid';
 /** 单个组件状态类型 */
 export type ComponentInfoType = {
   fe_id: string; // 前端生成的id, 服务端Mongodb不认这种格式，所以自定义一个fe_id
@@ -18,11 +20,14 @@ export type ComponentsStateType = {
   selectedId: string;
   /** 当前编辑页面对应的组件列表 */
   componentList: Array<ComponentInfoType>;
+  /** 存放复制的组件 */
+  copiedComponent: ComponentInfoType | null;
 };
 /** 初始化状态 */
 const INIT_STATE: ComponentsStateType = {
   selectedId: '',
   componentList: [],
+  copiedComponent: null,
 };
 
 /** 创建状态切片 */
@@ -120,6 +125,25 @@ export const componentsSlice = createSlice({
         }
       }
     ),
+    /** 拷贝当前选中的组件 */
+    copySelectedComponent: produce((draft: ComponentsStateType) => {
+      const { selectedId, componentList = [] } = draft;
+      const selectedComponent = componentList.find(c => c.fe_id === selectedId);
+      console.log('selectedComponent', selectedComponent);
+      if (selectedComponent == null) return;
+      draft.copiedComponent = cloneDeep(selectedComponent); // 深拷贝
+    }),
+    /** 粘贴组件 */
+    pasteCopiedComponent: produce((draft: ComponentsStateType) => {
+      const { copiedComponent } = draft;
+      if (copiedComponent == null) return;
+
+      // 要把 fe_id 给修改了，重要！！
+      copiedComponent.fe_id = nanoid();
+
+      // 插入 copiedComponent
+      insertNewComponent(draft, copiedComponent);
+    }),
   },
 });
 export const {
@@ -131,6 +155,8 @@ export const {
   removeSelectedComponent,
   changeComponentHidden,
   toggleComponentLocked,
+  copySelectedComponent,
+  pasteCopiedComponent,
 } = componentsSlice.actions;
 
 export default componentsSlice.reducer;

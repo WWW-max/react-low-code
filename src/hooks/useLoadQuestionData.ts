@@ -39,7 +39,7 @@ function useLoadQuestionData() {
     }
 
     /** 把 componentList 存储到 Redux store 中 */
-    dispatch(resetComponents({ componentList, selectedId }));
+    dispatch(resetComponents({ componentList, selectedId, copiedComponent: null }));
 
     /** 把页面信息pageInfo 存储到 Redux store 中 */
     dispatch(resetPageInfo({ title, desc, js, css, isPublished }));
