@@ -1,6 +1,10 @@
 import React, { FC, MouseEvent } from 'react';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
-import { changeSelectedId, ComponentInfoType, moveComponent } from '../../../../store/componentsReducer';
+import {
+  changeSelectedId,
+  ComponentInfoType,
+  moveComponent,
+} from '../../../../store/componentsReducer';
 import { getComponentConfByType } from '../../../../components/QuestionComponents';
 import classNames from 'classnames';
 import styles from './EditCanvas.module.scss';
@@ -28,7 +32,6 @@ const EditCanvas: FC<PropsType> = (props: PropsType) => {
 
   /** 点击选中 */
   function handleClick(event: MouseEvent, id: string) {
-    console.log('id', id);
     event.stopPropagation(); // 阻止冒泡
     dispatch(changeSelectedId(id));
   }

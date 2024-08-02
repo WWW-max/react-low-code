@@ -89,7 +89,30 @@ const SaveButton: FC = () => {
 
 /** 发布按钮 */
 const PublishButton: FC = () => {
-  return <Button type="primary">发布</Button>;
+  const nav = useNavigate();
+  const { id } = useParams();
+  const { componentList = [] } = useGetComponentInfo();
+  const pageInfo = useGetPageInfo();
+
+  const { loading, run: publish } = useRequest(
+    async () => {
+      if (!id) return;
+      await updateQuestionService(id, { ...pageInfo, componentList, isPublished: true }); // sPublished: true 代表问卷已经发布
+    },
+    {
+      manual: true,
+      onSuccess() {
+        message.success('发布成功！');
+        nav('/question/stat/' + id); // 发布成功，跳转到统计页面
+      },
+    }
+  );
+
+  return (
+    <Button type="primary" onClick={publish} disabled={loading}>
+      发布
+    </Button>
+  );
 };
 
 /** 编辑器头部 */
