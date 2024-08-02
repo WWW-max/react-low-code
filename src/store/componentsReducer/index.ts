@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { produce } from 'immer';
 import { insertNewComponent } from './utils';
 import { ComponentPropsType } from '../../components/QuestionComponents';
+import { arrayMove } from '@dnd-kit/sortable';
 /** 单个组件状态类型 */
 export type ComponentInfoType = {
   fe_id: string; // 前端生成的id, 服务端Mongodb不认这种格式，所以自定义一个fe_id
@@ -60,10 +61,26 @@ export const componentsSlice = createSlice({
         }
       }
     ),
+    /** 移动组件位置 */
+    moveComponent: produce(
+      (
+        draft: ComponentsStateType,
+        action: PayloadAction<{ oldIndex: number; newIndex: number }>
+      ) => {
+        const { oldIndex, newIndex } = action.payload;
+        const { componentList: curComponentList } = draft;
+        draft.componentList = arrayMove(curComponentList, oldIndex, newIndex);
+      }
+    ),
   },
 });
 
-export const { resetComponents, addComponent, changeSelectedId, changeComponentProps } =
-  componentsSlice.actions;
+export const {
+  resetComponents,
+  addComponent,
+  changeSelectedId,
+  changeComponentProps,
+  moveComponent,
+} = componentsSlice.actions;
 
 export default componentsSlice.reducer;
