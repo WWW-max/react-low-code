@@ -1,11 +1,14 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import styles from './EditHeader.module.scss';
-import { Button, Input, Space, Typography } from 'antd';
-import { EditOutlined, LeftOutlined } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { Button, Input, message, Space, Typography } from 'antd';
+import { EditOutlined, LeftOutlined, LoadingOutlined } from '@ant-design/icons';
+import { useNavigate, useParams } from 'react-router-dom';
 import useGetPageInfo from '../../../../hooks/useGetPageInfo';
 import { useDispatch } from 'react-redux';
 import { changePageTile } from '../../../../store/pageInfoReducer';
+import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
+import { useDebounce, useDebounceEffect, useKeyPress, useRequest } from 'ahooks';
+import { updateQuestionService } from '../../../../services/question';
 
 const { Title } = Typography;
 
@@ -42,7 +45,46 @@ const TitleElem: FC = () => {
 
 /** 保存按钮 */
 const SaveButton: FC = () => {
-  return <Button>保存</Button>;
+  const { id } = useParams();
+  const { componentList = [] } = useGetComponentInfo();
+  const pageInfo = useGetPageInfo();
+
+  /** 保存 */
+  const { run: save, loading } = useRequest(
+    async () => {
+      if (!id) return;
+      await updateQuestionService(id, { ...pageInfo, componentList });
+    },
+    {
+      manual: true,
+      onSuccess() {
+        message.success('保存成功！');
+      },
+    }
+  );
+
+  /** 快捷键保存 */
+  useKeyPress(['ctrl.s', 'meta.s'], (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (!loading) save();
+  });
+
+  /** 自动保存(不是定期保存，不是定时器，是改动后自动保存) */
+  useDebounceEffect(
+    () => {
+      save();
+    },
+    [componentList, pageInfo],
+    {
+      wait: 1000,
+    }
+  );
+
+  return (
+    <Button onClick={save} loading={loading} icon={loading ? <LoadingOutlined /> : null}>
+      保存
+    </Button>
+  );
 };
 
 /** 发布按钮 */
