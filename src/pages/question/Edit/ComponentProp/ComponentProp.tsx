@@ -3,7 +3,10 @@
  */
 import React, { ComponentProps, FC } from 'react';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
-import { ComponentPropsType, getComponentConfByType } from '../../../../components/QuestionComponents';
+import {
+  ComponentPropsType,
+  getComponentConfByType,
+} from '../../../../components/QuestionComponents';
 import { useDispatch } from 'react-redux';
 import { changeComponentProps } from '../../../../store/componentsReducer';
 
