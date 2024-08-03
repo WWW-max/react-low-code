@@ -3,6 +3,7 @@ export type OptionType = {
   value: string;
   text: string;
 };
+
 /** 问卷 单选框 props type*/
 export type QuestionRadioPropsType = {
   title?: string;
@@ -25,4 +26,9 @@ export const QuestionRadioDefaultProps: QuestionRadioPropsType = {
     { value: 'item3', text: '选项3' },
   ],
   value: '',
+};
+
+/** 统计组件的属性类型 */
+export type QuestionRadioStatPropsType = {
+  stat: Array<{ name: string; count: number }>;
 };

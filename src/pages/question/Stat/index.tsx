@@ -63,10 +63,10 @@ export default function Stat() {
           />
         </div>
         <div className={styles.right}>
-          {/* <CharStat
+          <CharStat
             selectedComponentId={selectedComponentId}
             selectedComponentType={selectedComponentType}
-          /> */}
+          />
         </div>
       </>
     );
