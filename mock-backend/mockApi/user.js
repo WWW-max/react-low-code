@@ -33,7 +33,8 @@ module.exports = [
       return {
         errno: 0,
         data: {
-          name: Random.cname(),
+          username: Random.cname(),
+          nickname: Random.cname(),
         },
       };
     },

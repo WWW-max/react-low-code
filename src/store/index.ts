@@ -2,8 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import componentsReducer, { ComponentsStateType } from './componentsReducer';
 import pageInfoReducer, { PageInfoType } from './pageInfoReducer';
 import undoable, { excludeAction, StateWithHistory } from 'redux-undo';
+import userReducer, { UserStateType } from './userReducer/userReducer';
 
 export type StateType = {
+  user: UserStateType;
   // components: ComponentsStateType;
   components: StateWithHistory<ComponentsStateType>; // 增加了 undo
   pageInfo: PageInfoType;
@@ -11,6 +13,7 @@ export type StateType = {
 
 export default configureStore({
   reducer: {
+    user: userReducer,
     /** 没有undo 功能 */
     // components: componentsReducer,
 

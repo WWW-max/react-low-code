@@ -79,3 +79,11 @@ export const HOME_PATHNAME = '/';
 export const LOGIN_PATHNAME = '/login';
 export const REGISTER_PATHNAME = '/register';
 export const MANAGE_INDEX_PATHNAME = '/manage/list';
+
+// 是否是登陆活注册页面
+export const isLoginOrRegister = (pathname: string) =>
+  [LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname);
+
+// 是否是需要用户信息的页面
+export const isNoNeedUserInfo = (pathname: string) =>
+  [HOME_PATHNAME, LOGIN_PATHNAME, REGISTER_PATHNAME].includes(pathname);

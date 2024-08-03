@@ -10,6 +10,12 @@ type RegisterParamsType = {
   password: string;
   nickname: string;
 };
+/** 获取用户接口 */
+export async function getUserInfoService(): Promise<ResDataType> {
+  const url = '/api/user/info';
+  const data = (await axios.get(url)) as ResDataType;
+  return data;
+}
 /** 用户登录接口 */
 export async function loginServices(params: LoginParamsType): Promise<ResDataType> {
   const url = '/api/user/login';
