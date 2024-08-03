@@ -1,6 +1,16 @@
 import React, { FC, useMemo, useRef } from 'react';
 import styles from './StatHeader.module.scss';
-import { Button, Input, InputRef, message, Popover, QRCode, Space, Tooltip, Typography } from 'antd';
+import {
+  Button,
+  Input,
+  InputRef,
+  message,
+  Popover,
+  QRCode,
+  Space,
+  Tooltip,
+  Typography,
+} from 'antd';
 import { CopyOutlined, LeftOutlined, QrcodeOutlined } from '@ant-design/icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import useGetPageInfo from '../../../../hooks/useGetPageInfo';

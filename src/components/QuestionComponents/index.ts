@@ -11,9 +11,15 @@ import QuestionInputConf, { QuestionInputPropsType } from './QuestionInput';
 /** 多行输入框 */
 import QuestionTextareaConf, { QuestionTextareaPropsType } from './QuestionTextarea';
 /** 多选框 */
-import QuestionCheckboxConf, { QuestionCheckboxPropsType, QuestionCheckboxStatPropsType } from './QuestionCheckbox';
+import QuestionCheckboxConf, {
+  QuestionCheckboxPropsType,
+  QuestionCheckboxStatPropsType,
+} from './QuestionCheckbox';
 /** 单选框 */
-import QuestionRadioConf, { QuestionRadioPropsType, QuestionRadioStatPropsType } from './QuestionRadio';
+import QuestionRadioConf, {
+  QuestionRadioPropsType,
+  QuestionRadioStatPropsType,
+} from './QuestionRadio';
 
 /** 统一 各个组件的 props type */
 export type ComponentPropsType = QuestionInputPropsType &
