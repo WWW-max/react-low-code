@@ -12,10 +12,10 @@ import useNavPage from '../hooks/useNavPage';
 
 const { Header, Content, Footer } = Layout;
 export default function MainLayout() {
-  // /** 加载用户信息 */
-  // const { waitingUserData } = useLoadUserData();
-  // /** 用户没有登录时，跳转到登录页 */
-  // useNavPage(waitingUserData);
+  /** 加载用户信息 */
+  const { waitingUserData } = useLoadUserData();
+  /** 用户没有登录时，跳转到登录页 */
+  useNavPage(waitingUserData);
 
   const nav = useNavigate();
   const goLogin = () => {

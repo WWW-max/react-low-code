@@ -36,6 +36,9 @@ module.exports = [
           username: Random.cname(),
           nickname: Random.cname(),
         },
+
+        // errno: 100,
+        // msg: '获取用户信息失败',
       };
     },
   },

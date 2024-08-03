@@ -18,7 +18,7 @@ function useNavPage(waitingUserData: boolean) {
 
     /** 已经登录了 */
     if (username) {
-      // 是登陆活着注册页面则挑战到主页面
+      // 是登陆或者注册页面则跳转到主页面
       if (isLoginOrRegister(pathname)) {
         nav(MANAGE_INDEX_PATHNAME);
       }
