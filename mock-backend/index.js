@@ -28,7 +28,7 @@ mockList.forEach(item => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(4000, () => {
+app.listen(8000, () => {
   // eslint-disable-next-line no-console
-  console.log('server is running at http://localhost:4000');
+  console.log('server is running at http://localhost:8000');
 });

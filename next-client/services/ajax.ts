@@ -1,5 +1,5 @@
 /** mock的host */
-const HOST = 'http://localhost:4000';
+const HOST = 'http://localhost:8000'; // 后端
 
 export async function get(url: string) {
   const res = await fetch(`${HOST}${url}`);
