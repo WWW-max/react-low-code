@@ -37,6 +37,8 @@
   },
   "scripts": {
     "start": "craco start",
+    "mockbe": "cd mock-backend && npm start",
+    "dev": "concurrently \"npm start\" \"npm run mockbe\" ",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -67,6 +69,7 @@
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/mockjs": "^1.0.10",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",

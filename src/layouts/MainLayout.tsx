@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './MainLayout.module.scss';
-import { SnippetsFilled } from '@ant-design/icons';
 import { Layout, Spin } from 'antd';
 import useLoadUserData from '../hooks/useLoadUserData';
 import useNavPage from '../hooks/useNavPage';

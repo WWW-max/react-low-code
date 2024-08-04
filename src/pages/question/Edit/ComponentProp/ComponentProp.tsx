@@ -1,7 +1,7 @@
 /**
  * 组件属性设置面板
  */
-import React, { ComponentProps, FC } from 'react';
+import React, { FC } from 'react';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
 import {
   ComponentPropsType,
