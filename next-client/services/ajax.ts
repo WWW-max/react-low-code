@@ -12,4 +12,6 @@ export async function post(url: string, body: any) {
     method: 'post',
     body: JSON.stringify(body),
   });
+  const data = res.json();
+  return data;
 }

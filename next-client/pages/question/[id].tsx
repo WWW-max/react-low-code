@@ -67,7 +67,7 @@ export default function Question(props: PropsType) {
   );
   return (
     <PageWrapper title={title} desc={desc}>
-      <form method="post" action="api/answer">
+      <form method="post" action="/api/answer">
         {/* 隐藏域，用于表单提交问卷id数据 */}
         <input type="hidden" name="questionId" value={id} />
         {/* 组件部分 */}

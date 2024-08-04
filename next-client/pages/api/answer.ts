@@ -27,8 +27,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // 获取并格式化表单数据
   const answerInfo = genAnswerInfo(req.body);
 
-  console.log('answerInfo', answerInfo);
-
   try {
     // 提交到服务端 Mock
     const resData = await postAnswer(answerInfo);
