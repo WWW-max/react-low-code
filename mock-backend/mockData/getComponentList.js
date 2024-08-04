@@ -7,14 +7,15 @@ function getComponentList() {
       title: '标题',
       isHidden: false,
       isLocked: false,
+      props: { text: '个人信息调研', level: 1, isCenter: false },
     },
-    // Input
     {
       fe_id: 'c3',
       type: 'questionParagraph',
       title: '段落',
       isHidden: false,
       isLocked: false,
+      props: { text: '一行段落1\n一行段落2', isCenter: false },
     },
     {
       fe_id: 'c4',
@@ -22,6 +23,7 @@ function getComponentList() {
       title: '多行输入',
       isHidden: false,
       isLocked: false,
+      props: { title: '你的爱好', placeholder: '请输入...' },
     },
     {
       fe_id: 'c5',
@@ -29,6 +31,7 @@ function getComponentList() {
       title: '问卷信息',
       isHidden: false,
       isLocked: false,
+      props: { title: '问卷标题', desc: '问卷描述...' },
     },
     {
       fe_id: 'c6',
@@ -36,6 +39,7 @@ function getComponentList() {
       title: '输入框',
       isHidden: false,
       isLocked: false,
+      props: { title: '你的姓名', placeholder: '请输入姓名...' },
     },
     {
       fe_id: 'c7',
