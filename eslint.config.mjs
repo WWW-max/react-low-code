@@ -47,6 +47,7 @@ export default [
       'no-unused-vars': 'warn', // 未使用的变量
       '@typescript-eslint/no-explicit-any': 'warn', // 直接写any
       '@typescript-eslint/no-unused-vars': 'warn',
+      'react/react-in-jsx-scope': 'off',
     },
   },
 ];
