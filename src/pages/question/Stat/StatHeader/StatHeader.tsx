@@ -33,7 +33,7 @@ const StatHeader: FC = () => {
     message.success('拷贝成功');
   };
 
-  /** 链接和二维码 */
+  /** 链接和二维码 (使用 useMemo 1. 依赖项是否经常变化; 2. 缓存的元素是否创建成本较高)*/
   const LinkAndQRCodeElem = useMemo(() => {
     if (!isPublished) return null;
 

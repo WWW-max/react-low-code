@@ -16,10 +16,11 @@ const ComponentLib: FC = () => {
     const { title, type, Component, defaultProps } = conf;
     const dispatch = useDispatch();
 
+    /** useCallback缓存函数 */
     const handleClick = useCallback(() => {
       dispatch(
         addComponent({
-          fe_id: nanoid(),
+          fe_id: nanoid(), // 前端生成的 id
           title,
           type,
           props: defaultProps,
