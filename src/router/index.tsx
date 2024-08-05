@@ -14,8 +14,8 @@ import QuestionLayout from '../layouts/QuestionLayout';
 // import Edit from '../pages/question/Edit';
 // import Stat from '../pages/question/Stat';
 /** 路由懒加载，拆分 bundle ，优化首页体积 */
-const Edit = React.lazy(() => import('../pages/question/Edit'));
-const Stat = React.lazy(() => import('../pages/question/Stat'));
+const Edit = React.lazy(() => import(/* webpackChunkName: "editPage" */ '../pages/question/Edit'));
+const Stat = React.lazy(() => import(/* webpackChunkName: "StatPage" */ '../pages/question/Stat'));
 
 const router = createBrowserRouter([
   {
