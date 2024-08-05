@@ -32,6 +32,7 @@
     "recharts": "^2.12.7",
     "redux-undo": "^1.1.0",
     "sass": "^1.77.7",
+    "source-map-explorer": "^2.5.3",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -44,7 +45,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.+(js|ts|jsx|tsx)\"",
     "format": "prettier --write \"src/**/*.+(js|ts|jsx|tsx)\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": {
     "production": [

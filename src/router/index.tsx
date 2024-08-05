@@ -11,8 +11,11 @@ import List from '../pages/manage/List';
 import Star from '../pages/manage/Star';
 import Trash from '../pages/manage/Trash';
 import QuestionLayout from '../layouts/QuestionLayout';
-import Edit from '../pages/question/Edit';
-import Stat from '../pages/question/Stat';
+// import Edit from '../pages/question/Edit';
+// import Stat from '../pages/question/Stat';
+/** 路由懒加载，拆分 bundle ，优化首页体积 */
+const Edit = React.lazy(() => import('../pages/question/Edit'));
+const Stat = React.lazy(() => import('../pages/question/Stat'));
 
 const router = createBrowserRouter([
   {
