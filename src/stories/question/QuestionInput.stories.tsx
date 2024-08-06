@@ -14,7 +14,7 @@ export const Default: Story = {
   args: {},
 };
 
-export const setProps: Story = {
+export const SetProps: Story = {
   args: {
     title: '测试输入框标题',
     placeholder: '请输入',
