@@ -5,10 +5,10 @@ import Component from './Component';
 
 /** 测试用例1 */
 test('默认属性', () => {
-  render(<Component />);
+  render(<Component />); // 渲染组件
 
   const p = screen.getByText('多选框标题');
-  expect(p).toBeInTheDocument();
+  expect(p).toBeInTheDocument(); // 断言
 
   for (let i = 1; i <= 3; i++) {
     const checkbox = screen.getByDisplayValue(`item${i}`);
