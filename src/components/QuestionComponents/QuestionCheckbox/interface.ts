@@ -16,7 +16,7 @@ export type QuestionCheckboxPropsType = {
   disabled?: boolean;
 };
 
-/** 单选按钮 props 默认值 */
+/** 多选框 props 默认值 */
 export const QuestionCheckboxDefaultProps: QuestionCheckboxPropsType = {
   title: '多选框标题',
   isVertical: false,
