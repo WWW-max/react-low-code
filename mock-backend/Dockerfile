@@ -2,13 +2,19 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# 设置npm镜像源为淘宝源
-RUN npm config set registry https://registry.npmmirror.com/
+RUN npm config set registry https://registry.npmmirror.com
+
+# 全局安装 pnpm
+RUN npm install -g pnpm
+
+# 设置 pnpm 镜像源为淘宝源
+RUN pnpm config set registry https://registry.npmmirror.com
 
 COPY package*.json ./
+COPY pnpm-lock.yaml ./
 
 # 只安装生产环境依赖
-RUN npm install --production
+RUN pnpm install --prod
 
 COPY . .
 
