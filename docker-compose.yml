@@ -1,0 +1,23 @@
+services:
+  frontend:
+    build:
+      context: .
+    container_name: frontend-react-low-code
+    ports:
+      - "80:80"
+    networks:
+      - app-network  # 将前端服务连接到网络
+    restart: always
+  backend:
+    build:
+      context: ./mock-backend
+    container_name: backend-react-low-code
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network # 将后端服务连接到同一网络
+    restart: always
+
+networks:
+  app-network: # 创建一个名为 app-network 的网络
+    driver: bridge # 网络驱动类型，使用 bridge 驱动，这是 Docker 最常用的网络驱动类型
