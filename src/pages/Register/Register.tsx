@@ -1,11 +1,10 @@
 import { Button, Form, message, Space, Typography } from 'antd';
 import Input from 'antd/es/input/Input';
-import Link from 'antd/es/typography/Link';
 import React from 'react';
 import styles from './Register.module.scss';
 import { useRequest } from 'ahooks';
 import { registerServices } from '../../services/user';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN_PATHNAME } from '../../router';
 
 const { Title } = Typography;
@@ -80,7 +79,7 @@ export default function Register() {
               <Button type="primary" htmlType="submit">
                 注册
               </Button>
-              <Link href="/login">已有账号，去登录</Link>
+              <Link to={LOGIN_PATHNAME}>已有账号，去登录</Link>
             </Space>
           </Form.Item>
         </Form>

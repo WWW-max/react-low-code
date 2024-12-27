@@ -14,6 +14,7 @@ function useNavPage(waitingUserData: boolean) {
   const nav = useNavigate();
 
   useEffect(() => {
+    /** 正确加载用户信息中，不跳转 */
     if (waitingUserData) return;
 
     /** 已经登录了 */
