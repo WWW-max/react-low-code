@@ -20,9 +20,9 @@ function useNavPage(waitingUserData: boolean) {
     /** 已经登录了 */
     if (username) {
       // 是登陆或者注册页面则跳转到主页面
-      if (isLoginOrRegister(pathname)) {
-        nav(MANAGE_INDEX_PATHNAME);
-      }
+      // if (isLoginOrRegister(pathname)) {
+      //   nav(MANAGE_INDEX_PATHNAME);
+      // }
       return;
     }
 

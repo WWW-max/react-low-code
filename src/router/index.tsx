@@ -17,62 +17,67 @@ import QuestionLayout from '../layouts/QuestionLayout';
 const Edit = React.lazy(() => import(/* webpackChunkName: "editPage" */ '../pages/question/Edit'));
 const Stat = React.lazy(() => import(/* webpackChunkName: "StatPage" */ '../pages/question/Stat'));
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <Home />,
+        },
+        {
+          path: 'login',
+          element: <Login />,
+        },
+        {
+          path: 'register',
+          element: <Register />,
+        },
+        {
+          path: 'manage',
+          element: <ManageLayout />,
+          children: [
+            {
+              path: 'list',
+              element: <List />,
+            },
+            {
+              path: 'star',
+              element: <Star />,
+            },
+            {
+              path: 'trash',
+              element: <Trash />,
+            },
+          ],
+        },
+        {
+          path: '*', // 404 路由配置，写在最后(兜底)
+          element: <NotFound />,
+        },
+      ],
+    },
+    {
+      path: '/question',
+      element: <QuestionLayout />,
+      children: [
+        {
+          path: '/question/edit/:id',
+          element: <Edit />,
+        },
+        {
+          path: '/question/stat/:id',
+          element: <Stat />,
+        },
+      ],
+    },
+  ],
   {
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
-      },
-      {
-        path: 'register',
-        element: <Register />,
-      },
-      {
-        path: 'manage',
-        element: <ManageLayout />,
-        children: [
-          {
-            path: 'list',
-            element: <List />,
-          },
-          {
-            path: 'star',
-            element: <Star />,
-          },
-          {
-            path: 'trash',
-            element: <Trash />,
-          },
-        ],
-      },
-      {
-        path: '*', // 404 路由配置，写在最后(兜底)
-        element: <NotFound />,
-      },
-    ],
-  },
-  {
-    path: '/question',
-    element: <QuestionLayout />,
-    children: [
-      {
-        path: '/question/edit/:id',
-        element: <Edit />,
-      },
-      {
-        path: '/question/stat/:id',
-        element: <Stat />,
-      },
-    ],
-  },
-]);
+    basename: process.env.REACT_APP_BASE_URL || '/react-low-code',
+  }
+);
 
 export default router;
 
