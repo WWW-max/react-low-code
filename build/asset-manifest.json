@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-low-code/static/css/main.7f91b1fa.css",
-    "main.js": "/react-low-code/static/js/main.a1ba98ba.js",
+    "main.js": "/react-low-code/static/js/main.9b249ef6.js",
     "editPage.css": "/react-low-code/static/css/editPage.f6a07f12.chunk.css",
     "editPage.js": "/react-low-code/static/js/editPage.3fd0ed12.chunk.js",
     "StatPage.css": "/react-low-code/static/css/StatPage.31a9e872.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/660.8b2724a6.chunk.js": "/react-low-code/static/js/660.8b2724a6.chunk.js",
     "index.html": "/react-low-code/index.html",
     "main.7f91b1fa.css.map": "/react-low-code/static/css/main.7f91b1fa.css.map",
-    "main.a1ba98ba.js.map": "/react-low-code/static/js/main.a1ba98ba.js.map",
+    "main.9b249ef6.js.map": "/react-low-code/static/js/main.9b249ef6.js.map",
     "editPage.f6a07f12.chunk.css.map": "/react-low-code/static/css/editPage.f6a07f12.chunk.css.map",
     "editPage.3fd0ed12.chunk.js.map": "/react-low-code/static/js/editPage.3fd0ed12.chunk.js.map",
     "StatPage.31a9e872.chunk.css.map": "/react-low-code/static/css/StatPage.31a9e872.chunk.css.map",
@@ -27,6 +27,6 @@
     "static/js/reactDom-chunk.55b8460e.js",
     "static/js/vendors-chunk.3a97d854.js",
     "static/css/main.7f91b1fa.css",
-    "static/js/main.a1ba98ba.js"
+    "static/js/main.9b249ef6.js"
   ]
 }
