@@ -38,7 +38,8 @@ const StatHeader: FC = () => {
     if (!isPublished) return null;
 
     /** 拼接url，需要参考C端规则 */
-    const url = `http://localhost:3000/question/${id}`;
+    // const url = `http://localhost:3000/question/${id}`;
+    const url = `http://${window.location.hostname}:3000/question/${id}`;
 
     /** 定义二维码组件 */
     const QRCodeElem = (
