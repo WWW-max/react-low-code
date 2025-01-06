@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-low-code/static/css/main.7f91b1fa.css",
-    "main.js": "/react-low-code/static/js/main.9b249ef6.js",
+    "main.js": "/react-low-code/static/js/main.e579f478.js",
     "editPage.css": "/react-low-code/static/css/editPage.f6a07f12.chunk.css",
     "editPage.js": "/react-low-code/static/js/editPage.3fd0ed12.chunk.js",
     "StatPage.css": "/react-low-code/static/css/StatPage.31a9e872.chunk.css",
-    "StatPage.js": "/react-low-code/static/js/StatPage.802e95fe.chunk.js",
+    "StatPage.js": "/react-low-code/static/js/StatPage.4b801238.chunk.js",
     "antd-chunk.js": "/react-low-code/static/js/antd-chunk.e6b566ce.js",
     "reactDom-chunk.js": "/react-low-code/static/js/reactDom-chunk.55b8460e.js",
     "vendors-chunk.js": "/react-low-code/static/js/vendors-chunk.3a97d854.js",
     "static/js/660.8b2724a6.chunk.js": "/react-low-code/static/js/660.8b2724a6.chunk.js",
     "index.html": "/react-low-code/index.html",
     "main.7f91b1fa.css.map": "/react-low-code/static/css/main.7f91b1fa.css.map",
-    "main.9b249ef6.js.map": "/react-low-code/static/js/main.9b249ef6.js.map",
+    "main.e579f478.js.map": "/react-low-code/static/js/main.e579f478.js.map",
     "editPage.f6a07f12.chunk.css.map": "/react-low-code/static/css/editPage.f6a07f12.chunk.css.map",
     "editPage.3fd0ed12.chunk.js.map": "/react-low-code/static/js/editPage.3fd0ed12.chunk.js.map",
     "StatPage.31a9e872.chunk.css.map": "/react-low-code/static/css/StatPage.31a9e872.chunk.css.map",
-    "StatPage.802e95fe.chunk.js.map": "/react-low-code/static/js/StatPage.802e95fe.chunk.js.map",
+    "StatPage.4b801238.chunk.js.map": "/react-low-code/static/js/StatPage.4b801238.chunk.js.map",
     "antd-chunk.e6b566ce.js.map": "/react-low-code/static/js/antd-chunk.e6b566ce.js.map",
     "reactDom-chunk.55b8460e.js.map": "/react-low-code/static/js/reactDom-chunk.55b8460e.js.map",
     "vendors-chunk.3a97d854.js.map": "/react-low-code/static/js/vendors-chunk.3a97d854.js.map",
@@ -27,6 +27,6 @@
     "static/js/reactDom-chunk.55b8460e.js",
     "static/js/vendors-chunk.3a97d854.js",
     "static/css/main.7f91b1fa.css",
-    "static/js/main.9b249ef6.js"
+    "static/js/main.e579f478.js"
   ]
 }
