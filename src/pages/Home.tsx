@@ -16,15 +16,24 @@ export default function Home() {
           支持可视化拖拽编排、组件图层管理与实时答卷统计分析，快速完成业务调研与数据收集。
         </p>
         <div className={styles.actions}>
-          <Button
-            type="primary"
-            size="large"
-            icon={<ArrowRightOutlined />}
-            iconPosition="end"
-            onClick={() => nav(MANAGE_INDEX_PATHNAME)}
-          >
-            开始使用
-          </Button>
+          <div className={styles.btnParticleWrapper}>
+            <span className={styles.particle} />
+            <span className={styles.particle} />
+            <span className={styles.particle} />
+            <span className={styles.particle} />
+            <span className={styles.particle} />
+            <span className={styles.particle} />
+            <Button
+              type="primary"
+              size="large"
+              className={styles.startBtn}
+              icon={<ArrowRightOutlined />}
+              iconPosition="end"
+              onClick={() => nav(MANAGE_INDEX_PATHNAME)}
+            >
+              开始使用
+            </Button>
+          </div>
         </div>
 
         <div className={styles.metrics}>

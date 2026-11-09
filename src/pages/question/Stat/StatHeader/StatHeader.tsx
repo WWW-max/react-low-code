@@ -12,7 +12,7 @@ import {
   Tooltip,
   Typography,
 } from 'antd';
-import { CopyOutlined, LeftOutlined, QrcodeOutlined } from '@ant-design/icons';
+import { CopyOutlined, ExportOutlined, LeftOutlined, QrcodeOutlined } from '@ant-design/icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import useGetPageInfo from '../../../../hooks/useGetPageInfo';
 
@@ -53,6 +53,12 @@ const StatHeader: FC = () => {
         <Input value={url} style={{ width: '280px' }} ref={urlInputRef} readOnly />
         <Tooltip title="拷贝答卷链接">
           <Button icon={<CopyOutlined />} onClick={copy} />
+        </Tooltip>
+        <Tooltip title="点击打开链接">
+          <Button
+            icon={<ExportOutlined />}
+            onClick={() => window.open(url, '_blank', 'noopener,noreferrer')}
+          />
         </Tooltip>
         <Popover content={QRCodeElem} placement="bottom">
           <Button icon={<QrcodeOutlined />} />
