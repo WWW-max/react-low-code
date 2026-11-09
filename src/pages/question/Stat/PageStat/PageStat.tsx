@@ -49,7 +49,7 @@ export default function PageStat(props: PropsType) {
       // title: colTitle,
       title: (
         <div
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', whiteSpace: 'nowrap' }}
           onClick={() => {
             setSelectedComponentId(fe_id);
             setSelectedComponentType(type);
@@ -75,7 +75,12 @@ export default function PageStat(props: PropsType) {
   /** 表格 */
   const TableElem = (
     <>
-      <Table columns={columns} dataSource={dataSource} pagination={false}></Table>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        pagination={false}
+        scroll={{ x: 'max-content' }}
+      />
       <div style={{ textAlign: 'center', marginTop: '18px' }}>
         <Pagination
           total={total}
