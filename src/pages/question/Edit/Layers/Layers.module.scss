@@ -1,31 +1,45 @@
 .wrapper {
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, .06);
-    display: flex;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.15s ease;
 
-    .title {
-        flex: auto;
-        line-height: 2;
-    }
-    
-    .selected {
-        color: #1890ff;
-    }
+  .title {
+    flex: auto;
+    line-height: 1.8;
+    font-size: 13px;
+    color: #334155;
+    cursor: pointer;
+    user-select: none;
+  }
 
-    .hander {
-        width: 50px;
-        text-align: end;
+  .selected {
+    color: #1677ff;
+    font-weight: 600;
+  }
 
-        .btn {
-            opacity: .2;
-        }
-    }
+  .handler {
+    width: 56px;
+    text-align: end;
+    flex-shrink: 0;
 
-    &:hover {
-        .hander {
-            .btn {
-                opacity: 1;
-            }
-        }
+    .btn {
+      opacity: 0.25;
+      transition: opacity 0.15s ease;
     }
+  }
+
+  &:hover {
+    background-color: #f8fafc;
+
+    .handler {
+      .btn {
+        opacity: 1;
+      }
+    }
+  }
 }

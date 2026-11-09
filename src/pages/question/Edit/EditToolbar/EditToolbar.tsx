@@ -9,7 +9,7 @@ import {
   UndoOutlined,
   UpOutlined,
 } from '@ant-design/icons';
-import { Button, Space, Tooltip } from 'antd';
+import { Button, Divider, Space, Tooltip } from 'antd';
 import React from 'react';
 import {
   changeComponentHidden,
@@ -79,53 +79,41 @@ export default function EditToolbar() {
     dispatch(UndoActionCreators.redo());
   };
   return (
-    <Space>
+    <Space size={4} align="center">
       <Tooltip title="删除">
-        <Button shape="circle" icon={<DeleteOutlined />} onClick={handleDelete}></Button>
+        <Button icon={<DeleteOutlined />} onClick={handleDelete} disabled={!selectedId} />
       </Tooltip>
       <Tooltip title="隐藏">
-        <Button shape="circle" icon={<EyeInvisibleOutlined />} onClick={handleHidden}></Button>
+        <Button icon={<EyeInvisibleOutlined />} onClick={handleHidden} disabled={!selectedId} />
       </Tooltip>
       <Tooltip title="锁定">
         <Button
-          shape="circle"
           icon={<LockOutlined />}
           onClick={handleLock}
           type={isLocked ? 'primary' : 'default'}
-        ></Button>
-      </Tooltip>
-      <Tooltip title="复制">
-        <Button
-          shape="circle"
-          icon={<CopyOutlined />}
-          onClick={copy}
           disabled={!selectedId}
-        ></Button>
+        />
+      </Tooltip>
+      <Divider type="vertical" style={{ margin: '0 4px', borderColor: '#e2e8f0' }} />
+      <Tooltip title="复制">
+        <Button icon={<CopyOutlined />} onClick={copy} disabled={!selectedId} />
       </Tooltip>
       <Tooltip title="粘贴">
-        <Button
-          shape="circle"
-          icon={<BlockOutlined />}
-          onClick={paste}
-          disabled={copiedComponent == null}
-        ></Button>
+        <Button icon={<BlockOutlined />} onClick={paste} disabled={copiedComponent == null} />
       </Tooltip>
+      <Divider type="vertical" style={{ margin: '0 4px', borderColor: '#e2e8f0' }} />
       <Tooltip title="上移">
-        <Button shape="circle" icon={<UpOutlined />} onClick={moveUp} disabled={isFirst}></Button>
+        <Button icon={<UpOutlined />} onClick={moveUp} disabled={isFirst || !selectedId} />
       </Tooltip>
       <Tooltip title="下移">
-        <Button
-          shape="circle"
-          icon={<DownOutlined />}
-          onClick={moveDown}
-          disabled={isLast}
-        ></Button>
+        <Button icon={<DownOutlined />} onClick={moveDown} disabled={isLast || !selectedId} />
       </Tooltip>
+      <Divider type="vertical" style={{ margin: '0 4px', borderColor: '#e2e8f0' }} />
       <Tooltip title="撤销">
-        <Button shape="circle" icon={<UndoOutlined />} onClick={undo}></Button>
+        <Button icon={<UndoOutlined />} onClick={undo} />
       </Tooltip>
       <Tooltip title="重做">
-        <Button shape="circle" icon={<RedoOutlined />} onClick={redo}></Button>
+        <Button icon={<RedoOutlined />} onClick={redo} />
       </Tooltip>
     </Space>
   );

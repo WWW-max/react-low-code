@@ -1,12 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Space, Typography } from 'antd';
 import { SnippetsFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import useGetUserInfo from '../../hooks/useGetUserInfo';
 import { HOME_PATHNAME, MANAGE_INDEX_PATHNAME } from '../../router/index';
 import styles from './Logo.module.scss';
-
-const { Title } = Typography;
 
 const Logo: FC = () => {
   const { username } = useGetUserInfo();
@@ -20,13 +17,11 @@ const Logo: FC = () => {
 
   return (
     <div className={styles.container}>
-      <Link to={pathname}>
-        <Space>
-          <Title>
-            <SnippetsFilled />
-          </Title>
-          <Title>问卷低代码平台</Title>
-        </Space>
+      <Link to={pathname} className={styles.link}>
+        <span className={styles.iconBox}>
+          <SnippetsFilled />
+        </span>
+        <span className={styles.title}>问卷低代码平台</span>
       </Link>
     </div>
   );

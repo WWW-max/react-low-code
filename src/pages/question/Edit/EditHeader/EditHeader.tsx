@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import styles from './EditHeader.module.scss';
-import { Button, Input, message, Space, Typography } from 'antd';
+import { Button, Divider, Input, message, Space, Typography } from 'antd';
 import { EditOutlined, LeftOutlined, LoadingOutlined } from '@ant-design/icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import useGetPageInfo from '../../../../hooks/useGetPageInfo';
 import { useDispatch } from 'react-redux';
 import { changePageTile } from '../../../../store/pageInfoReducer';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
-import { useDebounce, useDebounceEffect, useKeyPress, useRequest } from 'ahooks';
+import { useKeyPress, useRequest } from 'ahooks';
 import { updateQuestionService } from '../../../../services/question';
 import EditToolbar from '../EditToolbar/EditToolbar';
 
@@ -33,13 +33,15 @@ const TitleElem: FC = () => {
         onChange={handleChange}
         onPressEnter={() => setEditState(false)}
         onBlur={() => setEditState(false)}
+        style={{ width: 220 }}
+        autoFocus
       />
     );
   }
   return (
-    <Space>
-      <Title>{title}</Title>
-      <Button icon={<EditOutlined />} type="text" onClick={() => setEditState(true)} />
+    <Space size={4} align="center">
+      <Title className={styles.titleText}>{title}</Title>
+      <Button icon={<EditOutlined />} type="text" size="small" onClick={() => setEditState(true)} />
     </Space>
   );
 };
@@ -59,7 +61,7 @@ const SaveButton: FC = () => {
     {
       manual: true,
       onSuccess() {
-        // message.success('保存成功！');
+        message.success('保存成功');
       },
     }
   );
@@ -69,17 +71,6 @@ const SaveButton: FC = () => {
     event.preventDefault();
     if (!loading) save();
   });
-
-  /** 自动保存(不是定期保存，不是定时器，是改动后自动保存) */
-  // useDebounceEffect(
-  //   () => {
-  //     save();
-  //   },
-  //   [componentList, pageInfo],
-  //   {
-  //     wait: 1000,
-  //   }
-  // );
 
   return (
     <Button onClick={save} loading={loading} icon={loading ? <LoadingOutlined /> : null}>
@@ -98,7 +89,7 @@ const PublishButton: FC = () => {
   const { loading, run: publish } = useRequest(
     async () => {
       if (!id) return;
-      await updateQuestionService(id, { ...pageInfo, componentList, isPublished: true }); // sPublished: true 代表问卷已经发布
+      await updateQuestionService(id, { ...pageInfo, componentList, isPublished: true }); // isPublished: true 代表问卷已经发布
     },
     {
       manual: true,
@@ -111,7 +102,7 @@ const PublishButton: FC = () => {
 
   return (
     <Button type="primary" onClick={publish} disabled={loading}>
-      发布
+      发布问卷
     </Button>
   );
 };
@@ -124,10 +115,11 @@ const EditHeader: FC = () => {
     <div className={styles['header-wrapper']}>
       <div className={styles.header}>
         <div className={styles.left}>
-          <Space>
-            <Button type="link" icon={<LeftOutlined />} onClick={() => nav(-1)}>
+          <Space size={8} align="center">
+            <Button type="text" icon={<LeftOutlined />} onClick={() => nav(-1)}>
               返回
             </Button>
+            <Divider type="vertical" style={{ margin: '0 4px', borderColor: '#e2e8f0' }} />
             <TitleElem />
           </Space>
         </div>
@@ -135,7 +127,7 @@ const EditHeader: FC = () => {
           <EditToolbar />
         </div>
         <div className={styles.right}>
-          <Space>
+          <Space size={8}>
             <SaveButton />
             <PublishButton />
           </Space>

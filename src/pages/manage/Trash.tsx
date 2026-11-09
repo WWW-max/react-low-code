@@ -1,11 +1,13 @@
 import React from 'react';
 import styles from './common.module.scss';
-import { Empty, Spin } from 'antd';
+import { Empty, Spin, Typography } from 'antd';
 import QuestionTable from '../../components/QuestionTable/QuestionTable';
 import ListSearch from '../../components/ListSearch/ListSearch';
 import { useTitle } from 'ahooks';
 import useLoadQuestionListData from '../../hooks/useLoadQuestionListData';
 import ListPage from '../../components/ListPage/ListPage';
+
+const { Title } = Typography;
 
 export default function Trash() {
   useTitle('问卷低代码平台 - 回收站');
@@ -14,13 +16,15 @@ export default function Trash() {
   return (
     <div>
       <div className={styles.header}>
-        <h1 className={styles.left}>回收站</h1>
+        <div className={styles.left}>
+          <Title level={3}>回收站</Title>
+        </div>
         <div className={styles.right}>
           <ListSearch />
         </div>
       </div>
       {loading && (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', padding: '48px 0' }}>
           <Spin />
         </div>
       )}

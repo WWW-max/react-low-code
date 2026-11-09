@@ -11,7 +11,11 @@ import { useDispatch } from 'react-redux';
 import { changeComponentProps } from '../../../../store/componentsReducer';
 
 /** 未选中组件 */
-const NoProp: FC = () => <div style={{ textAlign: 'center' }}>未选中组件</div>;
+const NoProp: FC = () => (
+  <div style={{ textAlign: 'center', padding: '48px 0', color: '#94a3b8', fontSize: 13 }}>
+    请在画布中选择需要配置的组件
+  </div>
+);
 const ComponentProp: FC = () => {
   const dispatch = useDispatch();
 

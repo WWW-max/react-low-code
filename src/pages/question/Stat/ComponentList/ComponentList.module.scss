@@ -1,25 +1,30 @@
 .container {
   min-height: 100%;
+  padding: 8px 0;
   overflow-y: auto;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .component-wrapper {
-  margin: 12px;
-  border: 1px solid #fff;
-  padding: 12px 6px;
-  border-radius: 3px;
+  margin: 8px 12px;
+  border: 1px solid transparent;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 
   &:hover {
-    border-color: #d9d9d9;
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
   }
 }
 
 .selected {
-  border-color: #1890ff !important;
+  border-color: #1677ff !important;
+  background-color: rgba(22, 119, 255, 0.03) !important;
 }
 
 .component {
   pointer-events: none; // 屏蔽鼠标行为，组件不要点击
-  opacity: .8;
+  opacity: 0.85;
 }

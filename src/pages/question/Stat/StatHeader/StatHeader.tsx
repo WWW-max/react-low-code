@@ -2,6 +2,7 @@ import React, { FC, useMemo, useRef } from 'react';
 import styles from './StatHeader.module.scss';
 import {
   Button,
+  Divider,
   Input,
   InputRef,
   message,
@@ -38,7 +39,6 @@ const StatHeader: FC = () => {
     if (!isPublished) return null;
 
     /** 拼接url，需要参考C端规则 */
-    // const url = `http://localhost:3000/question/${id}`;
     const url = `http://${window.location.hostname}:3000/question/${id}`;
 
     /** 定义二维码组件 */
@@ -49,13 +49,13 @@ const StatHeader: FC = () => {
     );
 
     return (
-      <Space>
-        <Input value={url} style={{ width: '300px' }} ref={urlInputRef} />
-        <Tooltip title="点击拷贝链接">
-          <Button icon={<CopyOutlined />} onClick={copy}></Button>
+      <Space size={6}>
+        <Input value={url} style={{ width: '280px' }} ref={urlInputRef} readOnly />
+        <Tooltip title="拷贝答卷链接">
+          <Button icon={<CopyOutlined />} onClick={copy} />
         </Tooltip>
-        <Popover content={QRCodeElem}>
-          <Button icon={<QrcodeOutlined />}></Button>
+        <Popover content={QRCodeElem} placement="bottom">
+          <Button icon={<QrcodeOutlined />} />
         </Popover>
       </Space>
     );
@@ -64,11 +64,12 @@ const StatHeader: FC = () => {
     <div className={styles['header-wrapper']}>
       <div className={styles.header}>
         <div className={styles.left}>
-          <Space>
-            <Button type="link" icon={<LeftOutlined />} onClick={() => nav(-1)}>
+          <Space size={8} align="center">
+            <Button type="text" icon={<LeftOutlined />} onClick={() => nav(-1)}>
               返回
             </Button>
-            <Title>{title}</Title>
+            <Divider type="vertical" style={{ margin: '0 4px', borderColor: '#e2e8f0' }} />
+            <Title className={styles.titleText}>{title}</Title>
           </Space>
         </div>
         <div className={styles.main}>{LinkAndQRCodeElem}</div>

@@ -94,7 +94,7 @@ export default function List() {
         </div>
       </div>
       <div className={styles.content}>
-        <Space direction="vertical" style={{ width: '100%' }}>
+        <Space direction="vertical" size={12} style={{ width: '100%' }}>
           {/* 问卷列表 */}
           {list.length > 0 && list.map((item: any) => <QuestionCard key={item._id} {...item} />)}
         </Space>

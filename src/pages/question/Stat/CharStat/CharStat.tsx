@@ -35,16 +35,30 @@ export default function CharStat(props: PropsType) {
 
   /** 生成统计图表 */
   const genStatElem = () => {
-    if (!selectedComponentId) return <div>未选中组件</div>;
+    if (!selectedComponentId) {
+      return (
+        <div style={{ textAlign: 'center', padding: '48px 0', color: '#94a3b8', fontSize: 13 }}>
+          未选中组件
+        </div>
+      );
+    }
 
     const { StatComponent } = getComponentConfByType(selectedComponentType) || {};
-    if (StatComponent == null) return <div>该组件没有统计图表</div>;
+    if (StatComponent == null) {
+      return (
+        <div style={{ textAlign: 'center', padding: '48px 0', color: '#94a3b8', fontSize: 13 }}>
+          该组件没有统计图表
+        </div>
+      );
+    }
 
     return <StatComponent stat={stat} />;
   };
   return (
     <>
-      <Title level={3}>图表统计(针对单选/多选框选项比例)</Title>
+      <Title level={4} style={{ marginTop: 0, marginBottom: 16, fontSize: 16 }}>
+        图表统计
+      </Title>
       <div>{genStatElem()}</div>
     </>
   );

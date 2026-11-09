@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, message, Modal, Popconfirm, Space, Tag } from 'antd';
-// import type { PopconfirmProps } from 'antd';
+import { Button, message, Modal, Popconfirm, Space, Tag } from 'antd';
 import styles from './QuestionCard.module.scss';
 import {
   BarChartOutlined,
@@ -8,9 +7,10 @@ import {
   DeleteOutlined,
   EditOutlined,
   ExclamationCircleOutlined,
+  StarFilled,
   StarOutlined,
 } from '@ant-design/icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useRequest } from 'ahooks';
 import { duplicateQuestionService, updateQuestionService } from '../../services/question';
 
@@ -69,8 +69,9 @@ export default function QuestionCard(props: QuestionCardProps) {
   );
   function del() {
     Modal.confirm({
-      title: '确定删除吗？',
+      title: '确定删除该问卷吗？',
       icon: <ExclamationCircleOutlined />,
+      content: '删除后可在回收站中找回',
       onOk: deleteQuestion,
       okText: '确认',
       cancelText: '取消',
@@ -80,27 +81,37 @@ export default function QuestionCard(props: QuestionCardProps) {
   if (isDeletedState || (isStarPage && !isStarState)) return null;
 
   return (
-    <Card
-      title={
-        <span>
-          {isStarState && <StarOutlined style={{ color: 'red' }} />}
-          <span>{title}</span>
-        </span>
-      }
-      extra={
-        <Space>
-          <span>{isPublished ? <Tag color="blue">已发布</Tag> : <Tag>未发布</Tag>} </span>
-          <span>答卷:{answerCount}</span>
-          <span>{createdAt}</span>
-        </Space>
-      }
-    >
-      <div className={styles.container}>
+    <div className={styles.card}>
+      <div className={styles.top}>
+        <div className={styles.titleArea}>
+          <Link
+            to={isPublished ? `/question/stat/${_id}` : `/question/edit/${_id}`}
+            className={styles.titleLink}
+          >
+            {isStarState && <StarFilled className={styles.starIcon} />}
+            <span>{title}</span>
+          </Link>
+        </div>
+        <div className={styles.metaArea}>
+          {isPublished ? (
+            <Tag color="processing" bordered={false}>
+              已发布
+            </Tag>
+          ) : (
+            <Tag bordered={false}>未发布</Tag>
+          )}
+          <span className={styles.metaItem}>答卷 {answerCount}</span>
+          <span className={styles.metaTime}>{createdAt}</span>
+        </div>
+      </div>
+
+      <div className={styles.bottom}>
         <div className={styles.left}>
-          <Space>
+          <Space size={4}>
             <Button
               icon={<EditOutlined />}
               type="text"
+              size="small"
               onClick={() => nav(`/question/edit/${_id}`)}
             >
               编辑问卷
@@ -108,6 +119,7 @@ export default function QuestionCard(props: QuestionCardProps) {
             <Button
               icon={<BarChartOutlined />}
               type="text"
+              size="small"
               disabled={!isPublished}
               onClick={() => nav(`/question/stat/${_id}`)}
             >
@@ -116,34 +128,37 @@ export default function QuestionCard(props: QuestionCardProps) {
           </Space>
         </div>
         <div className={styles.right}>
-          <Space>
-            <span>
-              <Button
-                icon={<StarOutlined style={isStarState ? { color: 'red' } : {}} />}
-                type="text"
-                onClick={changeStar}
-                loading={changeStarLoading}
-              >
-                {isStarState ? '取消收藏' : '收藏'}
-              </Button>
-            </span>
-
+          <Space size={4}>
+            <Button
+              icon={isStarState ? <StarFilled style={{ color: '#f59e0b' }} /> : <StarOutlined />}
+              type="text"
+              size="small"
+              onClick={changeStar}
+              loading={changeStarLoading}
+            >
+              {isStarState ? '取消收藏' : '收藏'}
+            </Button>
             <Popconfirm
               title="确定复制该问卷？"
               okText="确定"
               cancelText="取消"
               onConfirm={duplicateQuestion}
             >
-              <Button icon={<CopyOutlined />} type="text" loading={duplicateQuestionLoading}>
+              <Button
+                icon={<CopyOutlined />}
+                type="text"
+                size="small"
+                loading={duplicateQuestionLoading}
+              >
                 复制
               </Button>
             </Popconfirm>
-            <Button icon={<DeleteOutlined />} type="text" onClick={del}>
+            <Button icon={<DeleteOutlined />} type="text" size="small" onClick={del}>
               删除
             </Button>
           </Space>
         </div>
       </div>
-    </Card>
+    </div>
   );
 }

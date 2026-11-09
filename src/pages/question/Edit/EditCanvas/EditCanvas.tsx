@@ -1,4 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
+import { Spin } from 'antd';
 import useGetComponentInfo from '../../../../hooks/useGetComponentInfo';
 import {
   changeSelectedId,
@@ -28,11 +29,20 @@ const genComponent = (componentInfo: ComponentInfoType) => {
 };
 
 const EditCanvas: FC<PropsType> = (props: PropsType) => {
+  const { loading } = props;
   const { componentList, selectedId } = useGetComponentInfo();
   const dispatch = useDispatch();
 
   /** 绑定快捷键 */
   useBindCanvasKeyPress();
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: 'center', paddingTop: '80px' }}>
+        <Spin />
+      </div>
+    );
+  }
 
   /** 点击选中 */
   function handleClick(event: MouseEvent, id: string) {

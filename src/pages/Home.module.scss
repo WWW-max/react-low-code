@@ -1,15 +1,87 @@
 .container {
-    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); // 渐变
-    height: calc(100vh - 64px - 65px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    // .info {
-    //     text-align: center;
-    //     button {
-    //         height: 60px;
-    //         font-size: 24px;
-    //     }
-    // } 
+  min-height: calc(100vh - 56px - 53px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 24px;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.hero {
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #475569;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+}
+
+.title {
+  margin: 0 0 16px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  max-width: 540px;
+  margin: 0 auto 32px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #475569;
+}
+
+.actions {
+  margin-bottom: 48px;
+}
+
+.metrics {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 24px 32px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.metricItem {
+  flex: 1;
+  text-align: center;
+}
+
+.metricValue {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+
+.metricLabel {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.metricDivider {
+  width: 1px;
+  height: 36px;
+  background-color: #e2e8f0;
 }

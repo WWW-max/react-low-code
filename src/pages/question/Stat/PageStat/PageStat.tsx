@@ -55,7 +55,12 @@ export default function PageStat(props: PropsType) {
             setSelectedComponentType(type);
           }}
         >
-          <span style={{ color: fe_id === selectedComponentId ? '#1890ff' : 'inherit' }}>
+          <span
+            style={{
+              color: fe_id === selectedComponentId ? '#1677ff' : 'inherit',
+              fontWeight: fe_id === selectedComponentId ? 600 : 500,
+            }}
+          >
             {colTitle}
           </span>
         </div>
@@ -87,9 +92,11 @@ export default function PageStat(props: PropsType) {
   );
   return (
     <div>
-      <Title level={3}>答卷数量: {!loading && total}</Title>
+      <Title level={4} style={{ marginTop: 0, marginBottom: 16, fontSize: 16 }}>
+        答卷数量: {!loading && total}
+      </Title>
       {loading && (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', padding: '48px 0' }}>
           <Spin />
         </div>
       )}

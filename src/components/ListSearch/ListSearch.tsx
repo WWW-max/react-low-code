@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from 'antd';
 import { LIST_SEARCH_PARAM_KEY } from '../../constant';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 const { Search } = Input;
 
 export default function ListSearch() {
   const [value, setValue] = useState('');
   const { pathname } = useLocation();
   const nav = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const curVal = searchParams.get(LIST_SEARCH_PARAM_KEY) || '';
+    setValue(curVal);
+  }, [searchParams]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
@@ -21,9 +27,8 @@ export default function ListSearch() {
   };
   return (
     <Search
-      size="large"
       allowClear
-      placeholder="输入关键字"
+      placeholder="搜索问卷标题..."
       value={value}
       onChange={handleChange}
       onSearch={handleSearch}

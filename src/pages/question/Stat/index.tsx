@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useLoadQuestionData from '../../../hooks/useLoadQuestionData';
 import useGetPageInfo from '../../../hooks/useGetPageInfo';
 import { useTitle } from 'ahooks';
@@ -71,7 +71,6 @@ export default function Stat() {
       </>
     );
   };
-  const { id } = useParams();
   return (
     <div className={styles.container}>
       <StatHeader />

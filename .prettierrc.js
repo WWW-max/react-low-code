@@ -5,7 +5,7 @@ module.exports = {
   bracketSpacing: true,
   // 行结束符使用Unix格式
   endOfLine: 'lf',
-  jsxBracketSameLine: false,
+  bracketSameLine: false,
   // 行宽
   printWidth: 100,
   // 换行方式

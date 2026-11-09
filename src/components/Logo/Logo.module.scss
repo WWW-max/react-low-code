@@ -1,11 +1,36 @@
 .container {
-    width: 200px;
-    margin: 12px 0;
-    line-height: 1;
-    text-align: center;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
 
-    h1 {
-        font-size: 18px;
-        color: #f7f7f7;
-    }
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+
+  &:hover .title {
+    color: #1677ff;
+  }
+}
+
+.iconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: #1677ff;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
 }
