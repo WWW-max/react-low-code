@@ -52,24 +52,80 @@
   justify-content: center;
 }
 
-.btnParticleWrapper {
+.btnOrbitWrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
+  padding: 2.5px;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(22, 119, 255, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* 沿着按钮圆角矩形四周持续旋转移动的粒子光束 */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 260%;
+    aspect-ratio: 1 / 1;
+    top: 50%;
+    left: 50%;
+    background: conic-gradient(
+      from 0deg,
+      rgba(22, 119, 255, 0.15) 0deg,
+      rgba(22, 119, 255, 0.15) 105deg,
+      rgba(56, 189, 248, 0.55) 145deg,
+      #38bdf8 168deg,
+      #ffffff 178deg,
+      rgba(22, 119, 255, 0.15) 182deg,
+      rgba(22, 119, 255, 0.15) 285deg,
+      rgba(56, 189, 248, 0.55) 325deg,
+      #38bdf8 348deg,
+      #ffffff 358deg,
+      rgba(22, 119, 255, 0.15) 360deg
+    );
+    animation: borderOrbitRotate 3.6s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(22, 119, 255, 0.38);
+  }
 }
 
 .startBtn {
   position: relative;
   overflow: hidden;
   z-index: 2;
-  padding: 0 28px !important;
-  height: 44px !important;
-  font-size: 15px !important;
-  box-shadow: 0 4px 14px rgba(22, 119, 255, 0.28) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 28px;
+  height: 44px;
+  background-color: #1677ff;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 
+  &:hover {
+    background-color: #2563eb;
+
+    .arrowIcon {
+      animation: arrowPulseFast 0.7s ease-in-out infinite;
+    }
+  }
+
+  /* 按钮内部从左到右缓慢掠过的光影动效 */
   &::after {
     content: '';
     position: absolute;
@@ -80,83 +136,56 @@
     background: linear-gradient(
       105deg,
       rgba(255, 255, 255, 0) 15%,
-      rgba(255, 255, 255, 0.48) 50%,
+      rgba(255, 255, 255, 0.42) 50%,
       rgba(255, 255, 255, 0) 85%
     );
     transform: skewX(-22deg);
-    animation: lightSweep 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    animation: lightSweep 5s ease-in-out infinite;
     pointer-events: none;
-  }
-
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(22, 119, 255, 0.38) !important;
   }
 }
 
-.particle {
-  position: absolute;
-  pointer-events: none;
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(22, 119, 255, 0), #38bdf8, #1677ff);
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.85);
-  opacity: 0;
-  z-index: 1;
+.btnText {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 0 8px 2px #38bdf8;
+.arrowIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  animation: arrowPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%,
+  100% {
+    transform: translateX(0);
   }
-
-  &:nth-child(1) {
-    top: 4px;
-    left: -24px;
-    width: 36px;
-    animation: particleStreamRight 2.2s linear infinite;
+  50% {
+    transform: translateX(4px);
   }
+}
 
-  &:nth-child(2) {
-    bottom: 4px;
-    left: -16px;
-    width: 42px;
-    animation: particleStreamRight 2.5s linear 0.7s infinite;
+@keyframes arrowPulseFast {
+  0%,
+  100% {
+    transform: translateX(1px);
   }
-
-  &:nth-child(3) {
-    top: 22%;
-    left: -38px;
-    width: 28px;
-    animation: particleStreamRight 1.9s linear 1.2s infinite;
+  50% {
+    transform: translateX(6px);
   }
+}
 
-  &:nth-child(4) {
-    top: 72%;
-    left: -32px;
-    width: 32px;
-    animation: particleStreamRight 2.1s linear 0.4s infinite;
+@keyframes borderOrbitRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-
-  &:nth-child(5) {
-    top: 8px;
-    left: 15%;
-    width: 30px;
-    animation: particleStreamRight 2.4s linear 1.5s infinite;
-  }
-
-  &:nth-child(6) {
-    bottom: 8px;
-    left: 20%;
-    width: 34px;
-    animation: particleStreamRight 2s linear 0.9s infinite;
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -164,28 +193,9 @@
   0% {
     left: -120%;
   }
-  55%,
+  65%,
   100% {
     left: 180%;
-  }
-}
-
-@keyframes particleStreamRight {
-  0% {
-    transform: translateX(0) scaleX(0.4);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-    transform: translateX(40px) scaleX(1);
-  }
-  80% {
-    opacity: 0.9;
-    transform: translateX(185px) scaleX(1.1);
-  }
-  100% {
-    transform: translateX(230px) scaleX(0.3);
-    opacity: 0;
   }
 }
 

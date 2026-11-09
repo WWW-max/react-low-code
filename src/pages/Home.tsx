@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import styles from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
@@ -16,23 +15,15 @@ export default function Home() {
           支持可视化拖拽编排、组件图层管理与实时答卷统计分析，快速完成业务调研与数据收集。
         </p>
         <div className={styles.actions}>
-          <div className={styles.btnParticleWrapper}>
-            <span className={styles.particle} />
-            <span className={styles.particle} />
-            <span className={styles.particle} />
-            <span className={styles.particle} />
-            <span className={styles.particle} />
-            <span className={styles.particle} />
-            <Button
-              type="primary"
-              size="large"
+          <div className={styles.btnOrbitWrapper}>
+            <button
+              type="button"
               className={styles.startBtn}
-              icon={<ArrowRightOutlined />}
-              iconPosition="end"
               onClick={() => nav(MANAGE_INDEX_PATHNAME)}
             >
-              开始使用
-            </Button>
+              <span className={styles.btnText}>开始使用</span>
+              <ArrowRightOutlined className={styles.arrowIcon} />
+            </button>
           </div>
         </div>
 
