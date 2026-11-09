@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.hero}>
-        <div className={styles.tag}>ENTERPRISE SURVEY WORKBENCH</div>
-        <h1 className={styles.title}>问卷调查与在线表单系统</h1>
+        <div className={styles.tag}>LOW-CODE SURVEY PLATFORM</div>
+        <h1 className={styles.title}>可视化问卷低代码平台</h1>
         <p className={styles.subtitle}>
-          支持可视化拖拽编排、组件图层管理与实时答卷统计分析，快速完成业务调研与数据收集。
+          提供拖拽式组件编排、图层管理与实时答卷统计分析，零代码快速搭建在线问卷与投票应用。
         </p>
         <div className={styles.actions}>
           <div className={styles.btnOrbitWrapper}>
