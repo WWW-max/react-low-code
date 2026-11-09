@@ -75,7 +75,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: process.env.REACT_APP_BASE_URL || '/react-low-code',
+    basename: process.env.REACT_APP_BASE_URL || '/',
   }
 );
 
